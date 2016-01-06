@@ -59,8 +59,9 @@ class AccountLogInViewModel {
             .asDriver(onErrorJustReturn: false)
         }
         .flatMapLatest { loggedIn -> Driver<Bool> in
+          
           let message = loggedIn ? "Connexion réussi" : "La connexion a échouée"
-          return wireframe.promptFor(message, cancelAction: "OK", actions: [])
+          return wireframe.promptFor("Connexion", message: message, cancelAction: "OK", actions: [])
             .map { _ in
               loggedIn
             }

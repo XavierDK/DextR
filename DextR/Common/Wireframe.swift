@@ -12,7 +12,7 @@ import UIKit
 
 protocol Wireframe {
   func openURL(URL: NSURL)
-  func promptFor<Action: CustomStringConvertible>(message: String, cancelAction: Action, actions: [Action]) -> Observable<Action>
+  func promptFor<Action: CustomStringConvertible>(title: String, message: String, cancelAction: Action, actions: [Action]) -> Observable<Action>
 }
 
 class DefaultWireframe: Wireframe {
@@ -28,16 +28,16 @@ class DefaultWireframe: Wireframe {
   
   static func presentAlert(message: String) {
     
-    let alertView = UIAlertController(title: "Erreur", message: message, preferredStyle: .Alert)
+    let alertView = UIAlertController(title: "Alerte", message: message, preferredStyle: .Alert)
     alertView.addAction(UIAlertAction(title: "OK", style: .Cancel) { _ in
       })
     rootViewController().presentViewController(alertView, animated: true, completion: nil)
   }
   
-  func promptFor<Action : CustomStringConvertible>(message: String, cancelAction: Action, actions: [Action]) -> Observable<Action> {
+  func promptFor<Action : CustomStringConvertible>(title: String, message: String, cancelAction: Action, actions: [Action]) -> Observable<Action> {
     
     return Observable.create { observer in
-      let alertView = UIAlertController(title: "Erreur", message: message, preferredStyle: .Alert)
+      let alertView = UIAlertController(title: title, message: message, preferredStyle: .Alert)
       alertView.addAction(UIAlertAction(title: cancelAction.description, style: .Cancel) { _ in
         observer.on(.Next(cancelAction))
         })

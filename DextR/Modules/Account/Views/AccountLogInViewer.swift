@@ -23,6 +23,8 @@ class AccountLogInViewer: UITableViewController {
   
   var disposeBag = DisposeBag()
   
+  var completionSuccess: (() -> ())?
+  
   var API: AccountAPIProtocol?
   var validationService: AccountValidationProtocol?
   var wireframe: Wireframe?
@@ -63,8 +65,11 @@ class AccountLogInViewer: UITableViewController {
       .addDisposableTo(disposeBag)
     
     viewModel.logIn
-      .driveNext { signedIn in
-        print("User signed in \(signedIn)")
+      .driveNext { [unowned self] signedIn in
+        if signedIn == true {
+          self.navigationController?.popToRootViewControllerAnimated(true)
+          self.completionSuccess?()
+        }
       }
       .addDisposableTo(disposeBag)
     
@@ -83,4 +88,9 @@ class AccountLogInViewer: UITableViewController {
     view.endEditing(true)
   }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    self.navigationItem.hidesBackButton = true
+  }
 }
