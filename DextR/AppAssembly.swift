@@ -26,6 +26,7 @@ extension SwinjectStoryboard {
     
     defaultContainer.registerForStoryboard(AccountMenuViewer.self) { r, c in
       c.router = r.resolve(AppRouter.self)
+      c.accountAPI = r.resolve(AccountAPIProtocol.self)
     }
     
     defaultContainer.registerForStoryboard(AccountLogInViewer.self) { r, c in
@@ -49,6 +50,9 @@ extension SwinjectStoryboard {
     
     defaultContainer.registerForStoryboard(QCMMenuViewer.self) { r, c in
       c.router = r.resolve(AppRouter.self)
+      c.accountAPI = r.resolve(AccountAPIProtocol.self)
+      c.qcmAPI = r.resolve(QCMAPIProtocol.self)
+      c.wireframe = r.resolve(Wireframe.self)
     }
     
     defaultContainer.registerForStoryboard(QCMCreatorViewer.self) { r, c in

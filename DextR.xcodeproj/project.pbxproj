@@ -24,6 +24,7 @@
 		257971991C3DC8D1006B9DD2 /* BasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257971971C3DC8D1006B9DD2 /* BasicCell.swift */; };
 		2579719A1C3DC8D1006B9DD2 /* BasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257971981C3DC8D1006B9DD2 /* BasicCell.xib */; };
 		2579719C1C3DC9B3006B9DD2 /* AccountMenuViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579719B1C3DC9B3006B9DD2 /* AccountMenuViewer.swift */; };
+		2579719E1C3DD7E0006B9DD2 /* QCMMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579719D1C3DD7E0006B9DD2 /* QCMMenuViewModel.swift */; };
 		25C6E2191C384DD800A6CDFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2181C384DD800A6CDFD /* AppDelegate.swift */; };
 		25C6E2201C384DD800A6CDFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25C6E21E1C384DD800A6CDFD /* Main.storyboard */; };
 		25C6E2221C384DD800A6CDFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25C6E2211C384DD800A6CDFD /* Assets.xcassets */; };
@@ -101,6 +102,7 @@
 		257971971C3DC8D1006B9DD2 /* BasicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCell.swift; sourceTree = "<group>"; };
 		257971981C3DC8D1006B9DD2 /* BasicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicCell.xib; sourceTree = "<group>"; };
 		2579719B1C3DC9B3006B9DD2 /* AccountMenuViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountMenuViewer.swift; path = Modules/Account/Views/AccountMenuViewer.swift; sourceTree = "<group>"; };
+		2579719D1C3DD7E0006B9DD2 /* QCMMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMMenuViewModel.swift; path = "Modules/QCM Admin/ViewModels/QCMMenuViewModel.swift"; sourceTree = "<group>"; };
 		25C6E2151C384DD800A6CDFD /* DextR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DextR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25C6E2181C384DD800A6CDFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25C6E21F1C384DD800A6CDFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 		25C6E28D1C38912200A6CDFD /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2579719D1C3DD7E0006B9DD2 /* QCMMenuViewModel.swift */,
 				2579717C1C3DA227006B9DD2 /* QCMCreatorViewModel.swift */,
 				257971801C3DAC9C006B9DD2 /* QuestionCreatorViewModel.swift */,
 				257971821C3DACAF006B9DD2 /* AnswerCreatorViewModel.swift */,
@@ -653,6 +656,7 @@
 				257971991C3DC8D1006B9DD2 /* BasicCell.swift in Sources */,
 				25C6E27B1C38720300A6CDFD /* PFAnonymousUtils+Rx.swift in Sources */,
 				25C6E2951C3892D100A6CDFD /* AnswerProtocol.swift in Sources */,
+				2579719E1C3DD7E0006B9DD2 /* QCMMenuViewModel.swift in Sources */,
 				2579719C1C3DC9B3006B9DD2 /* AccountMenuViewer.swift in Sources */,
 				2579718D1C3DC42E006B9DD2 /* QCMAPIService.swift in Sources */,
 				257971851C3DACD4006B9DD2 /* QuestionCreatorViewer.swift in Sources */,

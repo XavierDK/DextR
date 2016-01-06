@@ -18,7 +18,7 @@ class AccountMenuViewer : UITableViewController {
   private let accountMenuCell = "BasicCell"
   
   var router: AppRouter?
-  var accountService: AccountAPIService?
+  var accountAPI: AccountAPIProtocol?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,7 +33,7 @@ class AccountMenuViewer : UITableViewController {
   }
   
   func checkConnected() {
-    if self.accountService?.currentAccount() != nil {
+    if self.accountAPI?.currentAccount() != nil {
       router?.showQCMMenuFromVC(self)
     }
   }

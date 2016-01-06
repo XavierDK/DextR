@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol QCMProtocol {
+@objc protocol QCMProtocol {
   
   var name : String? {get set}
   var duration : Int {get set}

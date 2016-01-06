@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 import RxSwift
 
 class QCMAPIService: QCMAPIProtocol {
@@ -33,6 +34,11 @@ class QCMAPIService: QCMAPIProtocol {
     answer.title = title
     answer.correct = correct
     return answer.rx_save()
+  }
+  
+  func allQcms() -> Observable<[QCM]?> {
+    
+    return QCM.query()!.rx_findObjects()
   }
 }
 

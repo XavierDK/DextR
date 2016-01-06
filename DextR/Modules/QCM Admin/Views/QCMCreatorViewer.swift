@@ -83,4 +83,9 @@ class QCMCreatorViewer: UITableViewController {
     view.endEditing(true)
   }
   
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    self.navigationItem.hidesBackButton = true
+  }
 }

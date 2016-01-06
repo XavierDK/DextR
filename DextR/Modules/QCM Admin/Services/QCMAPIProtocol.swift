@@ -14,4 +14,6 @@ protocol QCMAPIProtocol {
   func saveQCM(name: String, duration: String) -> Observable<Bool>
   func saveQuestionForQcm(title: String, type: String, qcm: QCMProtocol) -> Observable<Bool>
   func saveAnswerForQuestion(title: String, correct: Bool, question: QuestionProtocol) -> Observable<Bool>
+  
+  func allQcms() -> Observable<[QCM]?>
 }

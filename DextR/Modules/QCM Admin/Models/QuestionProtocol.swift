@@ -12,10 +12,10 @@ enum QuestionType: String {
   case Unknown = ""
 }
 
-protocol QuestionProtocol {
+@objc protocol QuestionProtocol {
   
   var title : String? {get set}
-  var questionType : QuestionType {get set}
+  var questionType : String {get}
   var qcmParent : QCMProtocol? {get}
   var qcmAnswers : [AnswerProtocol]? {get}
   

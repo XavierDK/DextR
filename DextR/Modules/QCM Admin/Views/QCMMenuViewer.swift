@@ -18,14 +18,26 @@ class QCMMenuViewer : UITableViewController {
   private let qcmMenuCell = "BasicCell"
   
   var router: AppRouter?
-  var accountService: AccountAPIService?
+  var accountAPI: AccountAPIProtocol?
+  var qcmAPI: QCMAPIProtocol?
+  var wireframe: Wireframe?
+  
+  var viewModel: QCMMenuViewModel?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let currentUser = accountService?.currentAccount()
+    self.viewModel = QCMMenuViewModel(
+      
+      dependency: (
+        API: self.qcmAPI!,
+        wireframe: self.wireframe!
+      )
+    )
     
-    if  currentUser?.admin?.boolValue == true {
+    let currentUser = accountAPI?.currentAccount()
+    
+    if  currentUser?.admin.boolValue == true {
       
       setupAdminConfig()
     }
@@ -38,7 +50,6 @@ class QCMMenuViewer : UITableViewController {
     super.viewWillAppear(animated)
     self.navigationItem.hidesBackButton = true
   }
-  
   
   func setupAdminConfig() {
     
@@ -59,25 +70,16 @@ class QCMMenuViewer : UITableViewController {
     
     self.tableView.registerNib(UINib(nibName: "BasicCell", bundle: nil), forCellReuseIdentifier: qcmMenuCell)
     
-    let items = Observable.just([
-      "Test"
-      ])
-    
-    items
-      .bindTo(tableView.rx_itemsWithCellIdentifier(qcmMenuCell)) { (row, element, cell) in
-        if let c = cell as? BasicCell {
-          c.label?.text = element
-        }
+    viewModel?.qcms.asObservable()
+      .bindTo(tableView.rx_itemsWithCellIdentifier("BasicCell", cellType: BasicCell.self)) { (row, element, cell) in
+        cell.label.text = element.name
       }
       .addDisposableTo(disposeBag)
     
-    tableView.rx_itemSelected
-      .subscribeNext { [unowned self] indexPath in
+    tableView
+      .rx_modelSelected(QCMProtocol)
+      .subscribeNext { value in
         
-        switch indexPath.row {
-          default:
-          break
-        }
       }
       .addDisposableTo(disposeBag)
   }
