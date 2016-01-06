@@ -26,6 +26,8 @@ class QCMMenuViewModel {
     )
     ) {
       self.API = dependency.API
+      
+      self.reloadQcms()
   }
   
   func reloadQcms() {
