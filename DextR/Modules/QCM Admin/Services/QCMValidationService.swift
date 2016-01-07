@@ -24,6 +24,10 @@ class QCMValidationService: QCMValidationProtocol {
     if duration.characters.count == 0 {
       return .Empty
     }
+    
+    guard (Int(duration) != nil) else {
+      return .Failed(message: "La durée doit être un nombre en minutes")
+    }
     return .OK(message: "Durée OK")
   }
   

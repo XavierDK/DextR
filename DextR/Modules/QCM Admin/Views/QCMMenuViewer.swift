@@ -58,7 +58,9 @@ class QCMMenuViewer : UITableViewController {
     self.navigationItem.rightBarButtonItem = newButton    
     newButton.rx_tap
       .subscribe({ [unowned self] (event) -> () in
-        self.router?.showQCMCreatorFromVC(self)
+        self.router?.showQCMCreatorFromVC(self, withCompletion: { () -> () in
+          self.viewModel?.reloadQcms()
+        })
       })
     .addDisposableTo(disposeBag)
   }

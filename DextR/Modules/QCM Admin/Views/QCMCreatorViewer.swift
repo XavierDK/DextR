@@ -21,6 +21,8 @@ class QCMCreatorViewer: UITableViewController {
   @IBOutlet weak var createOutlet: UIButton!
   @IBOutlet weak var creatingOulet: UIActivityIndicatorView!
   
+  var completionSuccess: (() -> ())?
+  
   var disposeBag = DisposeBag()
   
   var API: QCMAPIProtocol?
@@ -63,8 +65,12 @@ class QCMCreatorViewer: UITableViewController {
       .addDisposableTo(disposeBag)
     
     viewModel.qcmCreated
-      .driveNext { created in
-        print("QCM created in \(created)")
+      .driveNext { [unowned self] created in
+        self.navigationController?.popToRootViewControllerAnimated(false)
+        
+        if let completion = self.completionSuccess {
+          completion()
+        }
       }
       .addDisposableTo(disposeBag)
     

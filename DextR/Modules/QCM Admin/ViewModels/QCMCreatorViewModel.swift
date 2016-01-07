@@ -19,6 +19,8 @@ class QCMCreatorViewModel {
   let qcmCreating: Driver<Bool>
   let qcmCreated: Driver<Bool>
   
+  var completionSuccess: (() -> ())?
+  
   init(
     input: (
     qcmName: Driver<String>,
@@ -69,8 +71,8 @@ class QCMCreatorViewModel {
             .asDriver(onErrorJustReturn: false)
         }
         .flatMapLatest { created -> Driver<Bool> in
-          let message = created ? "Connexion réussi" : "La connexion a échouée"
-          return wireframe.promptFor("Erreur", message: message, cancelAction: "OK", actions: [])
+          let message = created ? "Le QCM a été créé avec succès" : "Le QCM n'a pas pu être créé"
+          return wireframe.promptFor("QCM", message: message, cancelAction: "OK", actions: [])
             .map { _ in
               created
             }

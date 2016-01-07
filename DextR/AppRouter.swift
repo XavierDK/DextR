@@ -54,12 +54,13 @@ class AppRouter: NSObject {
     }
   }
   
-  func showQCMCreatorFromVC(vc: UIViewController) {
+  func showQCMCreatorFromVC(vc: UIViewController, withCompletion completion: () -> ()) {
     
     vc.detailsViewController?.popToRootViewControllerAnimated(false)
     let qcmCreator = viewControllerForIdentifier(qcmCreatorIdentifier)
     if let qcmCreator = qcmCreator as? QCMCreatorViewer {
       
+      qcmCreator.completionSuccess = completion
       vc.detailsViewController?.pushViewController(qcmCreator, animated: false)
     }
   }

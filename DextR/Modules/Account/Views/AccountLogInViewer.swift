@@ -67,7 +67,7 @@ class AccountLogInViewer: UITableViewController {
     viewModel.logIn
       .driveNext { [unowned self] signedIn in
         if signedIn == true {
-          self.navigationController?.popToRootViewControllerAnimated(true)
+          self.navigationController?.popToRootViewControllerAnimated(false)
           self.completionSuccess?()
         }
       }

@@ -18,8 +18,7 @@ class QCMMenuViewModel {
   
   let API: QCMAPIProtocol
   
-  init(
-    
+  init(    
     dependency: (
     API: QCMAPIProtocol,
     wireframe: Wireframe
