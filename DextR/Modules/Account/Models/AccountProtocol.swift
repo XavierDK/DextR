@@ -14,5 +14,5 @@ protocol AccountProtocol {
   var firstname : String? {get set}
   var lastname : String? {get set}
   var password : String? {get set}
-  var admin : NSNumber? {get set}
+  var admin : Bool {get set}
 }

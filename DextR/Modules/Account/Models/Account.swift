@@ -24,5 +24,5 @@ class Account : PFUser, AccountProtocol {
   
   @NSManaged var firstname : String?
   @NSManaged var lastname : String?
-  @NSManaged var admin : NSNumber?
+  @NSManaged var admin : Bool
 }

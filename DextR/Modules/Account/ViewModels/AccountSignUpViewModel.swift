@@ -24,19 +24,19 @@ class AccountSignUpViewModel {
   let signingUp: Driver<Bool>
   
   init(
-      input: (
-        email: Driver<String>,
-        password: Driver<String>,
-        repeatedPassword: Driver<String>,
-        lastname: Driver<String>,
-        firstname: Driver<String>,
-        signupTaps: Driver<Void>
-      ),
-      dependency: (
-        API: AccountAPIProtocol,
-        validationService: AccountValidationProtocol,
-        wireframe: Wireframe
-      )
+    input: (
+    email: Driver<String>,
+    password: Driver<String>,
+    repeatedPassword: Driver<String>,
+    lastname: Driver<String>,
+    firstname: Driver<String>,
+    signupTaps: Driver<Void>
+    ),
+    dependency: (
+    API: AccountAPIProtocol,
+    validationService: AccountValidationProtocol,
+    wireframe: Wireframe
+    )
     ) {
       
       let API = dependency.API
@@ -77,8 +77,8 @@ class AccountSignUpViewModel {
             .asDriver(onErrorJustReturn: false)
         }
         .flatMapLatest { signUpedIn -> Driver<Bool> in
-          let message = signUpedIn ? "Inscription réussi" : "Inscription échouée"
-          return wireframe.promptFor(message, cancelAction: "OK", actions: [])
+          let message = signUpedIn ? "Inscription réussie" : "Inscription échouée"
+          return wireframe.promptFor("Inscription", message: message, cancelAction: "OK", actions: [])
             .map { _ in
               signUpedIn
             }

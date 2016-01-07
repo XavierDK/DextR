@@ -43,19 +43,24 @@ class Question: PFObject, PFSubclassing, QuestionProtocol {
     }
   }
   
-  var questionType: QuestionType {
-    get {
-      if let t = type {
-        if let qt = QuestionType(rawValue: t) {
-          return qt
-        }
-      }
-      return .Unknown
-    }
-    set {      
-      type = newValue.rawValue
-    }
+  var questionType: String {
+    
+    return ""
   }
+  
+//  var questionType: QuestionType {
+//    get {
+//      if let t = type {
+//        if let qt = QuestionType(rawValue: t) {
+//          return qt
+//        }
+//      }
+//      return .Unknown
+//    }
+//    set {      
+//      type = newValue.rawValue
+//    }
+//  }
   
   @NSManaged var title : String?
   @NSManaged var type : String?
