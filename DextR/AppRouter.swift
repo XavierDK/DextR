@@ -43,6 +43,7 @@ class AppRouter: NSObject {
   
   let qcmMenuIdentifier = "QCMMenuViewer"
   let qcmCreatorIdentifier = "QCMCreatorViewer"
+  let qcmPresenterIdentifier = "QCMPresenterViewer"
   
   func showQCMMenuFromVC(vc: UIViewController) {
     
@@ -64,6 +65,17 @@ class AppRouter: NSObject {
       vc.detailsViewController?.pushViewController(qcmCreator, animated: false)
     }
   }
+  
+  func showQCMPresenterFromVC(vc: UIViewController, forQCM qcm: QCMProtocol) {
+    
+    vc.detailsViewController?.popToRootViewControllerAnimated(false)
+    let qcmPresenter = viewControllerForIdentifier(qcmPresenterIdentifier)
+    if let qcmPresenter = qcmPresenter as? QCMPresenterViewer {
+      qcmPresenter.qcm = qcm
+      vc.detailsViewController?.pushViewController(qcmPresenter, animated: false)
+    }
+  }
+
   
   
   

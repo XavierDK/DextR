@@ -80,9 +80,9 @@ class QCMMenuViewer : UITableViewController {
     
     tableView
       .rx_modelSelected(QCMProtocol)
-      .subscribeNext { value in
+      .subscribeNext { [unowned self] value in
         
-        
+        self.router?.showQCMPresenterFromVC(self, forQCM: value)
       }
       .addDisposableTo(disposeBag)
   }

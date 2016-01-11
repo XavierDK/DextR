@@ -28,7 +28,7 @@ class QCM: PFObject, PFSubclassing, QCMProtocol {
   @NSManaged var duration: Int
   @NSManaged var questions: [Question]?
   
-  var qcmQuestions: [QuestionProtocol]? {
+  var qcmQuestions: inout [QuestionProtocol]? {
     return questions
   }
   

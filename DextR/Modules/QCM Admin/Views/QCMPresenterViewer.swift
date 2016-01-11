@@ -13,7 +13,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class QCMViewer: UIViewController {
+class QCMPresenterViewer: UIViewController {
   
   @IBOutlet weak var nameOutlet: UILabel!
   @IBOutlet weak var durationOutlet: UILabel!
@@ -31,7 +31,7 @@ class QCMViewer: UIViewController {
     super.viewDidLoad()
     
     if let qcm = self.qcm {
-      let viewModel = QCMViewModel(
+      let viewModel = QCMPresenterViewModel(
         qcm: qcm,
         dependency: (
           API: self.API!,
@@ -73,6 +73,12 @@ class QCMViewer: UIViewController {
     
     let tapBackground = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboard:"))
     view.addGestureRecognizer(tapBackground)
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    
+    super.viewWillAppear(animated)
+    self.navigationItem.hidesBackButton = true
   }
   
   override func willMoveToParentViewController(parent: UIViewController?) {

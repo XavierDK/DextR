@@ -72,6 +72,11 @@ extension SwinjectStoryboard {
       c.validationService = r.resolve(QCMValidationProtocol.self)
       c.wireframe = r.resolve(Wireframe.self)
     }
+    
+    defaultContainer.registerForStoryboard(QCMPresenterViewer.self) { r, c in
+      c.API = r.resolve(QCMAPIProtocol.self)
+      c.wireframe = r.resolve(Wireframe.self)
+    }
   }
 
 }
