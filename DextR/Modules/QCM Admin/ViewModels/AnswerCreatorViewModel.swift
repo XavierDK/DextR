@@ -34,8 +34,7 @@ class AnswerCreatorViewModel {
       let API = dependency.API
       let validationService = dependency.validationService
       let wireframe = dependency.wireframe
-      
-      
+            
       validatedAnswerTitle = input.answerTitle
         .map { title in
           return validationService.validateAnswerTitle(title)

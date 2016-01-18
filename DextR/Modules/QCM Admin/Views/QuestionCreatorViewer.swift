@@ -23,20 +23,29 @@ class QuestionCreatorViewer: UITableViewController {
   
   var disposeBag = DisposeBag()
   
+  var completionSuccess: (() -> ())?
+  
   var qcm: QCMProtocol?
   
   var API: QCMAPIProtocol?
   var validationService: QCMValidationProtocol?
   var wireframe: Wireframe?
   
+  var questionType: Variable<String> = Variable("")
+  
+  var viewModel: QuestionCreatorViewModel?
+  
+  private let questionTypeIdentifier = "SegueQuestionType"
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     if let qcm = self.qcm {
-      let viewModel = QuestionCreatorViewModel(
+      
+      self.viewModel = QuestionCreatorViewModel(
         input: (
           questionTitle: titleOutlet.rx_text.asDriver(),
-          questionType: typeOutlet.rx_text.asDriver(),
+          questionType: questionType.asDriver(),
           questionTaps: createOutlet.rx_tap.asDriver(),
           qcm: qcm
         ),
@@ -47,26 +56,26 @@ class QuestionCreatorViewer: UITableViewController {
         )
       )
       
-      viewModel.questionEnabled
+      viewModel?.questionEnabled
         .driveNext { [weak self] valid  in
           self?.createOutlet.enabled = valid
           self?.createOutlet.alpha = valid ? 1.0 : 0.5
         }
         .addDisposableTo(disposeBag)
       
-      viewModel.validatedQuestionTitle
+      viewModel?.validatedQuestionTitle
         .drive(titleValidationOutlet.ex_validationResult)
         .addDisposableTo(disposeBag)
       
-      viewModel.validatedQuestionType
+      viewModel?.validatedQuestionType
         .drive(typeValidationOutlet.ex_validationResult)
         .addDisposableTo(disposeBag)
       
-      viewModel.questionCreating
+      viewModel?.questionCreating
         .drive(creatingOulet.rx_animating)
         .addDisposableTo(disposeBag)
       
-      viewModel.questionCreated
+      viewModel?.questionCreated
         .driveNext { created in
           print("Question created in \(created)")
         }
@@ -86,6 +95,21 @@ class QuestionCreatorViewer: UITableViewController {
   
   func dismissKeyboard(gr: UITapGestureRecognizer) {
     view.endEditing(true)
+  }
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    if segue.identifier == questionTypeIdentifier {
+      
+      if let ctrl = segue.destinationViewController as? QuestionTypeViewer {
+        
+        ctrl.selectionSuccess = { str in
+          
+          self.typeOutlet.text = str
+          self.questionType.value = str
+        }
+      }
+    }
   }
   
 }

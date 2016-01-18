@@ -1,16 +1,16 @@
 PODS:
-  - Bolts/Tasks (1.5.1)
-  - Parse (1.11.0):
+  - Bolts/Tasks (1.6.0)
+  - Parse (1.12.0):
     - Bolts/Tasks (~> 1.5)
-  - RxBlocking (2.0.0):
+  - RxBlocking (2.1.0):
     - RxSwift (~> 2.0)
-  - RxCocoa (2.0.0):
+  - RxCocoa (2.1.0):
     - RxSwift (~> 2.0)
-  - RxDataSources (0.1):
+  - RxDataSources (0.2):
     - RxCocoa (~> 2.0)
     - RxSwift (~> 2.0)
-  - RxSwift (2.0.0)
-  - RxTests (2.0.0):
+  - RxSwift (2.1.0)
+  - RxTests (2.1.0):
     - RxSwift (~> 2.0)
   - SVProgressHUD (1.1.3)
   - Swinject (1.0.0)
@@ -26,13 +26,13 @@ DEPENDENCIES:
   - Swinject (~> 1.0.0)
 
 SPEC CHECKSUMS:
-  Bolts: a12663244b1d3351c738882e71902fc74db54f64
-  Parse: 886af46a0a677402f6374bb97ac212e795f70afe
-  RxBlocking: a95a10ed54eb5d116f6c9a87047ff671e181d07b
-  RxCocoa: b0ebd70b4f7450bdb3c8987b122f8fd568dc1e2f
-  RxDataSources: 8ca09a688a461209db0ded90d82d9a79e08c75c3
-  RxSwift: d83246efa6f16c50c143bec134649d045498f601
-  RxTests: 9192d12aa719a549ffde482b5f59240388594e7a
+  Bolts: f52a250053bb517ca874523c3913776359ab3def
+  Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
+  RxBlocking: fa297def258d85c5beae9ed507f94645260b3747
+  RxCocoa: 79b5feb8378545336e756a0a33fcf5e95050b71c
+  RxDataSources: 09a9230e8e39b5c5df49b7d63e29c2262ebb5cca
+  RxSwift: 110fb07f81c17c2c3b3254d168363057b1880d18
+  RxTests: 94c67ffc37c36bd8c7aec90a84601a3db142be94
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   Swinject: f1ec058cc1809929fd5b962c3a8a8277827389b6
 

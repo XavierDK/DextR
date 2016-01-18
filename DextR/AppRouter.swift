@@ -44,7 +44,7 @@ class AppRouter: NSObject {
   let qcmMenuIdentifier = "QCMMenuViewer"
   let qcmCreatorIdentifier = "QCMCreatorViewer"
   let qcmPresenterIdentifier = "QCMPresenterViewer"
-  
+  let questionCreatorIdentifier = "QuestionCreatorViewer"
   func showQCMMenuFromVC(vc: UIViewController) {
     
     vc.masterViewController?.popToRootViewControllerAnimated(false)
@@ -75,9 +75,18 @@ class AppRouter: NSObject {
       vc.detailsViewController?.pushViewController(qcmPresenter, animated: false)
     }
   }
+  
+  func showQuestionCreatorFromVC(vc: UIViewController, andQCM qcm: QCMProtocol, withCompletion completion: () -> ()) {
+    
+    let questionCreator = viewControllerForIdentifier(questionCreatorIdentifier)
+    if let questionCreator = questionCreator as? QuestionCreatorViewer {
+      
+      questionCreator.qcm = qcm
+      questionCreator.completionSuccess = completion
+      vc.detailsViewController?.pushViewController(questionCreator, animated: true)
+    }
+  }
 
-  
-  
   
   // MARK: Default
   

@@ -58,9 +58,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
   
     Parse.enableLocalDatastore()
     // Initialize Parse.
+    
+    Account.initialize()
+    QCM.initialize()
+    Question.initialize()
+    Answer.initialize()
+    
     Parse.setApplicationId("AzeYq7Ju0aiQDvuNfJ27vQ7fYBRCLXRBj3sNkCd8",
       clientKey: "6BY4HFhRYtljRlW8G8PcXcjVZBuN8bhe9AW8hc9n")
-    Account.initialize()
     // [Optional] Track statistics around application opens.
     PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
   }

@@ -28,14 +28,24 @@ class QCM: PFObject, PFSubclassing, QCMProtocol {
   @NSManaged var duration: Int
   @NSManaged var questions: [Question]?
   
-  var qcmQuestions: inout [QuestionProtocol]? {
+  var qcmQuestions: [QuestionProtocol]? {
+    
+    if let questions = questions {
+      for question in questions {
+        do {
+          try question.fetch()
+        }
+        catch {
+        }
+      }
+    }
     return questions
   }
   
   func addQuestion(qcmQuestion: QuestionProtocol) {
     if let quest = qcmQuestion as? Question {
-      if var questions = questions {
-        questions.append(quest)
+      if questions != nil {
+        self.questions!.append(quest)
       }
       else {
         questions = [quest]

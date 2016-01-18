@@ -43,9 +43,14 @@ class Question: PFObject, PFSubclassing, QuestionProtocol {
     }
   }
   
-  var questionType: String {
+  var questionType: QuestionType {
     
-    return ""
+    if let type = type {
+      if let questionType = QuestionType(rawValue: type.integerValue) {
+        return questionType
+      }
+    }
+    return .Unknown
   }
   
 //  var questionType: QuestionType {
@@ -63,7 +68,7 @@ class Question: PFObject, PFSubclassing, QuestionProtocol {
 //  }
   
   @NSManaged var title : String?
-  @NSManaged var type : String?
+  @NSManaged var type : NSNumber?
   @NSManaged var qcm: QCM?
   @NSManaged var answers: [Answer]?
 }

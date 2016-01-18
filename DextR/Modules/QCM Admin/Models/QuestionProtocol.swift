@@ -8,14 +8,28 @@
 
 import Foundation
 
-enum QuestionType: String {
-  case Unknown = ""
+@objc enum QuestionType: Int {
+  case Unknown
+  case Selection
+  case TrueFalse
+  
+  static func valueFromString(str: String) -> QuestionType {
+    
+    if str == "Vrai/Faux" {
+      return .TrueFalse
+    }
+    else if str == "Séléction" {
+      return .Selection
+    }
+    
+    return .Unknown
+  }
 }
 
 @objc protocol QuestionProtocol {
   
   var title : String? {get set}
-  var questionType : String {get}
+  var questionType : QuestionType {get}
   var qcmParent : QCMProtocol? {get}
   var qcmAnswers : [AnswerProtocol]? {get}
   

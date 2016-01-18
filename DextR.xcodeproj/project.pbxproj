@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		252BC3D91C4C329D00EECD32 /* QuestionTypeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252BC3D81C4C329D00EECD32 /* QuestionTypeViewer.swift */; };
 		257971791C3DA1FA006B9DD2 /* QCMAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257971781C3DA1FA006B9DD2 /* QCMAPIProtocol.swift */; };
 		2579717B1C3DA213006B9DD2 /* QCMValidationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579717A1C3DA213006B9DD2 /* QCMValidationProtocol.swift */; };
 		2579717D1C3DA227006B9DD2 /* QCMCreatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579717C1C3DA227006B9DD2 /* QCMCreatorViewModel.swift */; };
@@ -85,6 +86,7 @@
 /* Begin PBXFileReference section */
 		03E4A41742A265CC159DF6A9 /* Pods_DextR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DextR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BB0B13C7C451253EB6A5D5 /* Pods-DextR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DextR.release.xcconfig"; path = "Pods/Target Support Files/Pods-DextR/Pods-DextR.release.xcconfig"; sourceTree = "<group>"; };
+		252BC3D81C4C329D00EECD32 /* QuestionTypeViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionTypeViewer.swift; path = "Modules/QCM Admin/Views/QuestionTypeViewer.swift"; sourceTree = "<group>"; };
 		257971781C3DA1FA006B9DD2 /* QCMAPIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMAPIProtocol.swift; path = "Modules/QCM Admin/Services/QCMAPIProtocol.swift"; sourceTree = "<group>"; };
 		2579717A1C3DA213006B9DD2 /* QCMValidationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMValidationProtocol.swift; path = "Modules/QCM Admin/Services/QCMValidationProtocol.swift"; sourceTree = "<group>"; };
 		2579717C1C3DA227006B9DD2 /* QCMCreatorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMCreatorViewModel.swift; path = "Modules/QCM Admin/ViewModels/QCMCreatorViewModel.swift"; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 				257971841C3DACD4006B9DD2 /* QuestionCreatorViewer.swift */,
 				257971861C3DACE3006B9DD2 /* AnswerCreatorViewer.swift */,
 				257971881C3DB352006B9DD2 /* QCMPresenterViewer.swift */,
+				252BC3D81C4C329D00EECD32 /* QuestionTypeViewer.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				2579718D1C3DC42E006B9DD2 /* QCMAPIService.swift in Sources */,
 				257971851C3DACD4006B9DD2 /* QuestionCreatorViewer.swift in Sources */,
 				25C6E2911C38929100A6CDFD /* QCMProtocol.swift in Sources */,
+				252BC3D91C4C329D00EECD32 /* QuestionTypeViewer.swift in Sources */,
 				25C6E2891C3886B300A6CDFD /* AccountSignUpViewModel.swift in Sources */,
 				257971891C3DB352006B9DD2 /* QCMPresenterViewer.swift in Sources */,
 				25C6E2971C3892EC00A6CDFD /* QCM.swift in Sources */,

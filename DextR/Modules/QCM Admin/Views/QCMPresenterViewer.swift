@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
@@ -20,12 +18,16 @@ class QCMPresenterViewer: UIViewController {
   @IBOutlet weak var questionsOutlet: UITableView!
   @IBOutlet weak var newQuestionOutlet: UIButton!
   
+  private let questionCell = "BasicCell"
+  
   var disposeBag = DisposeBag()
   
   var API: QCMAPIProtocol?
   var wireframe: Wireframe?
   
   var qcm: QCMProtocol?
+  
+  var router: AppRouter?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,9 +54,15 @@ class QCMPresenterViewer: UIViewController {
         .bindTo(durationOutlet.rx_text)
         .addDisposableTo(disposeBag)
       
+      
+      questionsOutlet.registerNib(UINib(nibName: "BasicCell", bundle: nil), forCellReuseIdentifier: questionCell)
+      
       viewModel.questions.asObservable()
-        .bindTo(questionsOutlet.rx_itemsWithCellIdentifier("Cell", cellType: UITableViewCell.self)) { (row, element, cell) in
-          cell.textLabel?.text = element.title
+        .bindTo(questionsOutlet.rx_itemsWithCellIdentifier(questionCell, cellType: UITableViewCell.self)) { (row, element, cell) in
+          if let c = cell as? BasicCell {
+            
+            c.label?.text = element.title
+          }
         }
         .addDisposableTo(disposeBag)
       
@@ -66,13 +74,15 @@ class QCMPresenterViewer: UIViewController {
         .addDisposableTo(disposeBag)
     }
     
-    newQuestionOutlet.rx_tap.subscribeNext { _ in
-      
-      }
-      .addDisposableTo(disposeBag)
+    if let qcm = self.qcm {
+      newQuestionOutlet.rx_tap.subscribeNext { [unowned self] _ in
+        self.router?.showQuestionCreatorFromVC(self, andQCM: qcm, withCompletion: { () -> () in
+          
+        })
+        }
+        .addDisposableTo(disposeBag)
+    }
     
-    let tapBackground = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboard:"))
-    view.addGestureRecognizer(tapBackground)
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -86,9 +96,5 @@ class QCMPresenterViewer: UIViewController {
       return
     }
     self.disposeBag = DisposeBag()
-  }
-  
-  func dismissKeyboard(gr: UITapGestureRecognizer) {
-    view.endEditing(true)
   }
 }

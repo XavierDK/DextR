@@ -21,10 +21,18 @@ class QCMAPIService: QCMAPIProtocol {
   }
   
   func saveQuestionForQcm(title: String, type: String, qcm: QCMProtocol) -> Observable<Bool> {
+    
+    let questionType = QuestionType.valueFromString(type)
   
     let question = Question()
     question.title = title
-    question.type = type
+    question.type = questionType.rawValue
+    qcm.addQuestion(question)
+    
+    if let qcm = qcm as? QCM {
+      self.saveQCM(qcm)
+    }
+    
     return question.rx_save()
   }
   
@@ -39,6 +47,10 @@ class QCMAPIService: QCMAPIProtocol {
   func allQcms() -> Observable<[QCM]?> {
     
     return QCM.query()!.rx_findObjects()
+  }
+  
+  func saveQCM(qcm: QCM) {
+    qcm.saveInBackground()
   }
 }
 
