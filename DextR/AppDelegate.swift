@@ -8,14 +8,25 @@
 
 import UIKit
 import Parse
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
   var window: UIWindow?
+  
+  let disposeBag = DisposeBag()
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    
+    let service = ALMAccountAPIService()
+    
+    service.logIn("xavier.dekoninck@gmail.com", password: "100289").subscribeNext { n in
+      print(n)
+    }
+      .addDisposableTo(disposeBag)
     
     self.setupParse(launchOptions)
     // Override point for customization after application launch.

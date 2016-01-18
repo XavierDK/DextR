@@ -10,8 +10,9 @@ pod 'RxCocoa',    '~> 2.0'
 pod 'RxBlocking', '~> 2.0'
 pod 'RxDataSources', '~> 0.1'
 pod 'Swinject', '~> 1.0.0'
+pod 'Alamofire', '~> 3.0'
+pod 'AlamofireObjectMapper', '~> 2.1'
 pod 'Parse'
-pod 'SVProgressHUD'
 
 end
 

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		252BC3D91C4C329D00EECD32 /* QuestionTypeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252BC3D81C4C329D00EECD32 /* QuestionTypeViewer.swift */; };
+		25470F991C4D5B24004C2095 /* ALMAccountAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25470F981C4D5B24004C2095 /* ALMAccountAPIService.swift */; };
+		25470F9B1C4D5B8A004C2095 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25470F9A1C4D5B8A004C2095 /* AppConstant.swift */; };
 		257971791C3DA1FA006B9DD2 /* QCMAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257971781C3DA1FA006B9DD2 /* QCMAPIProtocol.swift */; };
 		2579717B1C3DA213006B9DD2 /* QCMValidationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579717A1C3DA213006B9DD2 /* QCMValidationProtocol.swift */; };
 		2579717D1C3DA227006B9DD2 /* QCMCreatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579717C1C3DA227006B9DD2 /* QCMCreatorViewModel.swift */; };
@@ -87,6 +89,8 @@
 		03E4A41742A265CC159DF6A9 /* Pods_DextR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DextR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BB0B13C7C451253EB6A5D5 /* Pods-DextR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DextR.release.xcconfig"; path = "Pods/Target Support Files/Pods-DextR/Pods-DextR.release.xcconfig"; sourceTree = "<group>"; };
 		252BC3D81C4C329D00EECD32 /* QuestionTypeViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionTypeViewer.swift; path = "Modules/QCM Admin/Views/QuestionTypeViewer.swift"; sourceTree = "<group>"; };
+		25470F981C4D5B24004C2095 /* ALMAccountAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ALMAccountAPIService.swift; path = Modules/Account/Services/ALMAccountAPIService.swift; sourceTree = "<group>"; };
+		25470F9A1C4D5B8A004C2095 /* AppConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		257971781C3DA1FA006B9DD2 /* QCMAPIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMAPIProtocol.swift; path = "Modules/QCM Admin/Services/QCMAPIProtocol.swift"; sourceTree = "<group>"; };
 		2579717A1C3DA213006B9DD2 /* QCMValidationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMValidationProtocol.swift; path = "Modules/QCM Admin/Services/QCMValidationProtocol.swift"; sourceTree = "<group>"; };
 		2579717C1C3DA227006B9DD2 /* QCMCreatorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMCreatorViewModel.swift; path = "Modules/QCM Admin/ViewModels/QCMCreatorViewModel.swift"; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 				25C6E2181C384DD800A6CDFD /* AppDelegate.swift */,
 				25C6E2481C384F1700A6CDFD /* AppAssembly.swift */,
 				25C6E2551C3851D900A6CDFD /* AppRouter.swift */,
+				25470F9A1C4D5B8A004C2095 /* AppConstant.swift */,
 				25C6E21E1C384DD800A6CDFD /* Main.storyboard */,
 				25C6E2211C384DD800A6CDFD /* Assets.xcassets */,
 				25C6E2231C384DD800A6CDFD /* LaunchScreen.storyboard */,
@@ -313,6 +318,7 @@
 			children = (
 				25C6E25F1C386B9400A6CDFD /* AccountAPIProtocol.swift */,
 				25C6E2671C386C5B00A6CDFD /* AccountAPIService.swift */,
+				25470F981C4D5B24004C2095 /* ALMAccountAPIService.swift */,
 				25C6E2651C386C4B00A6CDFD /* AccountValidationProtocol.swift */,
 				25C6E2691C386C6E00A6CDFD /* AccountValidationService.swift */,
 			);
@@ -675,6 +681,7 @@
 				25C6E2801C38720300A6CDFD /* PFQuery+Rx.swift in Sources */,
 				2579718F1C3DC440006B9DD2 /* QCMValidationService.swift in Sources */,
 				25C6E27D1C38720300A6CDFD /* PFGeoPoint+Rx.swift in Sources */,
+				25470F991C4D5B24004C2095 /* ALMAccountAPIService.swift in Sources */,
 				25C6E2191C384DD800A6CDFD /* AppDelegate.swift in Sources */,
 				25C6E27A1C38720300A6CDFD /* ParseRxCallbacks.swift in Sources */,
 				25C6E2851C3873E100A6CDFD /* Account.swift in Sources */,
@@ -688,6 +695,7 @@
 				25C6E2661C386C4B00A6CDFD /* AccountValidationProtocol.swift in Sources */,
 				25C6E27E1C38720300A6CDFD /* PFObject+Rx.swift in Sources */,
 				257971911C3DC830006B9DD2 /* ViewController+SplitAddition.swift in Sources */,
+				25470F9B1C4D5B8A004C2095 /* AppConstant.swift in Sources */,
 				2579717D1C3DA227006B9DD2 /* QCMCreatorViewModel.swift in Sources */,
 				25C6E26C1C386D3B00A6CDFD /* Wireframe.swift in Sources */,
 				25C6E2601C386B9400A6CDFD /* AccountAPIProtocol.swift in Sources */,
