@@ -90,7 +90,7 @@ class AccountSignUpViewer: UITableViewController {
     
     viewModel.signupIn
       .driveNext { signedIn in
-        if signedIn == true {
+        if signedIn.isSuccess == true {
           self.navigationController?.popToRootViewControllerAnimated(false)
           self.completionSuccess?()
         }

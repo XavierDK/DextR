@@ -21,7 +21,7 @@ extension SwinjectStoryboard {
   class func setupAccount() {
   
     defaultContainer.register(AccountValidationProtocol.self) { _ in AccountValidationService() }
-    defaultContainer.register(AccountAPIProtocol.self) { _ in AccountAPIService() }
+    defaultContainer.register(AccountAPIProtocol.self) { _ in ALMAccountAPIService() }
     defaultContainer.register(Wireframe.self) { _ in DefaultWireframe() }
     
     defaultContainer.registerForStoryboard(AccountMenuViewer.self) { r, c in

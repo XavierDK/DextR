@@ -11,8 +11,8 @@ import RxSwift
 
 protocol AccountAPIProtocol {
   
-  func logIn(email: String, password: String) -> Observable<Bool>  
-  func signUp(email: String, password: String, firstname: String, lastname: String) -> Observable<Bool>
+  func logIn(email: String, password: String) -> Observable<RequestResult<AccountProtocol>>
+  func signUp(email: String, password: String, firstname: String, lastname: String) -> Observable<RequestResult<AccountProtocol>>
   func currentAccount() -> AccountProtocol?
   func logOut()
 }

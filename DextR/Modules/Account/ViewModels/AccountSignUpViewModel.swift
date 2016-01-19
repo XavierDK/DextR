@@ -20,7 +20,7 @@ class AccountSignUpViewModel {
   
   let signupEnabled: Driver<Bool>
   
-  let signupIn: Driver<Bool>
+  let signupIn: Driver<RequestResult<AccountProtocol>>
   let signingUp: Driver<Bool>
   
   init(
@@ -74,15 +74,14 @@ class AccountSignUpViewModel {
         .flatMapLatest { (email, password, lastname, firstname) in
           return API.signUp(email, password: password, firstname: firstname, lastname: lastname)
             .trackActivity(activityIndic)
-            .asDriver(onErrorJustReturn: false)
+            .asDriver(onErrorJustReturn: RequestResult<AccountProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
         }
-        .flatMapLatest { signUpedIn -> Driver<Bool> in
-          let message = signUpedIn ? "Inscription réussie" : "Inscription échouée"
-          return wireframe.promptFor("Inscription", message: message, cancelAction: "OK", actions: [])
+        .flatMapLatest { signUpedIn -> Driver<RequestResult<AccountProtocol>> in
+          return wireframe.promptFor("Inscription", message: signUpedIn.message, cancelAction: "OK", actions: [])
             .map { _ in
               signUpedIn
             }
-            .asDriver(onErrorJustReturn: false)
+            .asDriver(onErrorJustReturn: RequestResult<AccountProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
       }
       
       signupEnabled = Driver.combineLatest(

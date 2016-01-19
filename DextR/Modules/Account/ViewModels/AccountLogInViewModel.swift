@@ -17,7 +17,7 @@ class AccountLogInViewModel {
   
   let loginEnabled: Driver<Bool>
   
-  let logIn: Driver<Bool>
+  let logIn: Driver<RequestResult<AccountProtocol>>
   let logingIn: Driver<Bool>
   
   init(
@@ -56,16 +56,16 @@ class AccountLogInViewModel {
         .flatMapLatest { (email, password) in
           return API.logIn(email, password: password)
             .trackActivity(activityIndic)
-            .asDriver(onErrorJustReturn: false)
+            .asDriver(onErrorJustReturn: RequestResult<AccountProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
         }
-        .flatMapLatest { loggedIn -> Driver<Bool> in
+        .flatMapLatest { loggedIn -> Driver<RequestResult<AccountProtocol>> in
           
-          let message = loggedIn ? "Connexion réussi" : "La connexion a échouée"
-          return wireframe.promptFor("Connexion", message: message, cancelAction: "OK", actions: [])
+//          let message = loggedIn ? "Connexion réussi" : "La connexion a échouée"
+          return wireframe.promptFor("Connexion", message: loggedIn.message, cancelAction: "OK", actions: [])
             .map { _ in
               loggedIn
             }
-            .asDriver(onErrorJustReturn: false)
+            .asDriver(onErrorJustReturn: RequestResult<AccountProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
       }
       
       loginEnabled = Driver.combineLatest(

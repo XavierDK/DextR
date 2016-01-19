@@ -23,7 +23,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     
     let service = ALMAccountAPIService()
     
-    service.logIn("xavier.dekoninck@gmail.com", password: "100289").subscribeNext { n in
+    service.logIn("xavier.dekoninfsdck@gmail.com", password: "100289")
+      .subscribe(onNext: { (res) -> Void in
+        print(res)
+      }, onError: { (error) -> Void in
+        print(error)
+      }, onCompleted: { () -> Void in
+        
+      }, onDisposed: { () -> Void in
+        
+    }).addDisposableTo(disposeBag)
+    
+    service.signUp("xavier2.dekoninck@gmail.com", password: "100289", firstname: "tututiti", lastname: "tititutu").subscribeNext { n in
       print(n)
     }
       .addDisposableTo(disposeBag)

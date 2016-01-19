@@ -10,6 +10,7 @@
 		252BC3D91C4C329D00EECD32 /* QuestionTypeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252BC3D81C4C329D00EECD32 /* QuestionTypeViewer.swift */; };
 		25470F991C4D5B24004C2095 /* ALMAccountAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25470F981C4D5B24004C2095 /* ALMAccountAPIService.swift */; };
 		25470F9B1C4D5B8A004C2095 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25470F9A1C4D5B8A004C2095 /* AppConstant.swift */; };
+		25470F9D1C4E6D30004C2095 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25470F9C1C4E6D30004C2095 /* RequestResult.swift */; };
 		257971791C3DA1FA006B9DD2 /* QCMAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257971781C3DA1FA006B9DD2 /* QCMAPIProtocol.swift */; };
 		2579717B1C3DA213006B9DD2 /* QCMValidationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579717A1C3DA213006B9DD2 /* QCMValidationProtocol.swift */; };
 		2579717D1C3DA227006B9DD2 /* QCMCreatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579717C1C3DA227006B9DD2 /* QCMCreatorViewModel.swift */; };
@@ -91,6 +92,7 @@
 		252BC3D81C4C329D00EECD32 /* QuestionTypeViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionTypeViewer.swift; path = "Modules/QCM Admin/Views/QuestionTypeViewer.swift"; sourceTree = "<group>"; };
 		25470F981C4D5B24004C2095 /* ALMAccountAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ALMAccountAPIService.swift; path = Modules/Account/Services/ALMAccountAPIService.swift; sourceTree = "<group>"; };
 		25470F9A1C4D5B8A004C2095 /* AppConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
+		25470F9C1C4E6D30004C2095 /* RequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestResult.swift; path = Common/RequestResult.swift; sourceTree = "<group>"; };
 		257971781C3DA1FA006B9DD2 /* QCMAPIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMAPIProtocol.swift; path = "Modules/QCM Admin/Services/QCMAPIProtocol.swift"; sourceTree = "<group>"; };
 		2579717A1C3DA213006B9DD2 /* QCMValidationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMValidationProtocol.swift; path = "Modules/QCM Admin/Services/QCMValidationProtocol.swift"; sourceTree = "<group>"; };
 		2579717C1C3DA227006B9DD2 /* QCMCreatorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMCreatorViewModel.swift; path = "Modules/QCM Admin/ViewModels/QCMCreatorViewModel.swift"; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				25C6E2591C3852CC00A6CDFD /* BindingExtension.swift */,
 				25C6E26B1C386D3B00A6CDFD /* Wireframe.swift */,
 				25C6E26D1C386EC700A6CDFD /* ActivityIndicator.swift */,
+				25470F9C1C4E6D30004C2095 /* RequestResult.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				25C6E2911C38929100A6CDFD /* QCMProtocol.swift in Sources */,
 				252BC3D91C4C329D00EECD32 /* QuestionTypeViewer.swift in Sources */,
 				25C6E2891C3886B300A6CDFD /* AccountSignUpViewModel.swift in Sources */,
+				25470F9D1C4E6D30004C2095 /* RequestResult.swift in Sources */,
 				257971891C3DB352006B9DD2 /* QCMPresenterViewer.swift in Sources */,
 				25C6E2971C3892EC00A6CDFD /* QCM.swift in Sources */,
 				25C6E2791C38720300A6CDFD /* Observable+ParseCreate.swift in Sources */,

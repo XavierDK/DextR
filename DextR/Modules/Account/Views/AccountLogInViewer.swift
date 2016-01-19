@@ -65,8 +65,8 @@ class AccountLogInViewer: UITableViewController {
       .addDisposableTo(disposeBag)
     
     viewModel.logIn
-      .driveNext { [unowned self] signedIn in
-        if signedIn == true {
+      .driveNext { [unowned self] loggedIn in
+        if loggedIn.isSuccess == true {
           self.navigationController?.popToRootViewControllerAnimated(false)
           self.completionSuccess?()
         }
