@@ -18,26 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
   let disposeBag = DisposeBag()
 
 
-  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    
-    
-    let service = ALMAccountAPIService()
-    
-    service.logIn("xavier.dekoninfsdck@gmail.com", password: "100289")
-      .subscribe(onNext: { (res) -> Void in
-        print(res)
-      }, onError: { (error) -> Void in
-        print(error)
-      }, onCompleted: { () -> Void in
-        
-      }, onDisposed: { () -> Void in
-        
-    }).addDisposableTo(disposeBag)
-    
-    service.signUp("xavier2.dekoninck@gmail.com", password: "100289", firstname: "tututiti", lastname: "tititutu").subscribeNext { n in
-      print(n)
-    }
-      .addDisposableTo(disposeBag)
+  func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {            
     
     self.setupParse(launchOptions)
     // Override point for customization after application launch.
@@ -81,8 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     Parse.enableLocalDatastore()
     // Initialize Parse.
     
-    Account.initialize()
-    QCM.initialize()
     Question.initialize()
     Answer.initialize()
     

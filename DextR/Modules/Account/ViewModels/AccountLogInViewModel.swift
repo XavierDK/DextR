@@ -59,9 +59,9 @@ class AccountLogInViewModel {
             .asDriver(onErrorJustReturn: RequestResult<AccountProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
         }
         .flatMapLatest { loggedIn -> Driver<RequestResult<AccountProtocol>> in
-          
-//          let message = loggedIn ? "Connexion réussi" : "La connexion a échouée"
-          return wireframe.promptFor("Connexion", message: loggedIn.message, cancelAction: "OK", actions: [])
+
+          let message = loggedIn.message ?? "Connexion réussie"
+          return wireframe.promptFor("Connexion", message: message, cancelAction: "OK", actions: [])
             .map { _ in
               loggedIn
             }

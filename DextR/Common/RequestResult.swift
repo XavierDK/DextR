@@ -11,7 +11,7 @@ import Foundation
 struct RequestResult<ModelObject> {
   
   let isSuccess: Bool
-  let code: Int
-  let message: String
+  let code: Int?
+  let message: String?
   let modelObject: ModelObject?
 }

@@ -24,9 +24,9 @@ class Question: PFObject, PFSubclassing, QuestionProtocol {
     return "Question"
   }
   
-  var qcmParent : QCMProtocol? {
-    return qcm
-  }
+//  var qcmParent : QCMProtocol? {
+//    return qcm
+//  }
   
   var qcmAnswers : [AnswerProtocol]?  {
     return answers
@@ -69,6 +69,6 @@ class Question: PFObject, PFSubclassing, QuestionProtocol {
   
   @NSManaged var title : String?
   @NSManaged var type : NSNumber?
-  @NSManaged var qcm: QCM?
+//  @NSManaged var qcm: QCM?
   @NSManaged var answers: [Answer]?
 }

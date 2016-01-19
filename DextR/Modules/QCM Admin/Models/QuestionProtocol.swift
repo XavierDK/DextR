@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc enum QuestionType: Int {
+enum QuestionType: Int {
   case Unknown
   case Selection
   case TrueFalse
@@ -26,11 +26,11 @@ import Foundation
   }
 }
 
-@objc protocol QuestionProtocol {
+protocol QuestionProtocol {
   
   var title : String? {get set}
   var questionType : QuestionType {get}
-  var qcmParent : QCMProtocol? {get}
+//  var qcmParent : QCMProtocol? {get}
   var qcmAnswers : [AnswerProtocol]? {get}
   
   func addAnswer(qcmAnswer: AnswerProtocol)

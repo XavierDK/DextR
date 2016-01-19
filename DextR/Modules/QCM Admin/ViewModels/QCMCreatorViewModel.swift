@@ -17,7 +17,7 @@ class QCMCreatorViewModel {
   
   let qcmEnabled: Driver<Bool>
   let qcmCreating: Driver<Bool>
-  let qcmCreated: Driver<Bool>
+  let qcmCreated: Driver<RequestResult<QCMProtocol>>
   
   var completionSuccess: (() -> ())?
   
@@ -47,10 +47,10 @@ class QCMCreatorViewModel {
         .map { duration in
           return validationService.validateDuration(duration)
       }
-
+      
       let activityIndicQcm = ActivityIndicator()
       self.qcmCreating = activityIndicQcm.asDriver()
-
+      
       qcmEnabled = Driver.combineLatest(
         validatedQCMName,
         validatedQCMDuration,
@@ -66,17 +66,18 @@ class QCMCreatorViewModel {
       
       qcmCreated = input.qcmTaps.withLatestFrom(qcmDatas)
         .flatMapLatest { (name, duration) in
-          return API.saveQCM(name, duration: duration)
+          return API.createQCM(name, duration: duration)
             .trackActivity(activityIndicQcm)
-            .asDriver(onErrorJustReturn: false)
+            .asDriver(onErrorJustReturn: RequestResult<QCMProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
         }
-        .flatMapLatest { created -> Driver<Bool> in
-          let message = created ? "Le QCM a été créé avec succès" : "Le QCM n'a pas pu être créé"
+        .flatMapLatest { created -> Driver<RequestResult<QCMProtocol>> in
+          let message = created.message ?? "Le QCM a été créé avec succès"
+          
           return wireframe.promptFor("QCM", message: message, cancelAction: "OK", actions: [])
             .map { _ in
               created
             }
-            .asDriver(onErrorJustReturn: false)
+            .asDriver(onErrorJustReturn: RequestResult<QCMProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
       }
   }
 }

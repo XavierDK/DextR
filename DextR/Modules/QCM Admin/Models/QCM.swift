@@ -2,54 +2,35 @@
 //  QCM.swift
 //  DextR
 //
-//  Created by Xavier De Koninck on 03/01/2016.
+//  Created by Xavier De Koninck on 19/01/2016.
 //  Copyright © 2016 LinkValue. All rights reserved.
 //
 
 import Foundation
-import Parse
+import ObjectMapper
 
-class QCM: PFObject, PFSubclassing, QCMProtocol {
+struct QCM: QCMProtocol, Mappable {
   
-  override class func initialize() {
-    struct Static {
-      static var onceToken : dispatch_once_t = 0;
-    }
-    dispatch_once(&Static.onceToken) {
-      self.registerSubclass()
+  var name : String?
+  var duration : Int?
+  var questions : [QuestionProtocol]? {
+    get {
+      return []
     }
   }
   
-  static func parseClassName() -> String {
-    return "QCM"
-  }
-  
-  @NSManaged var name: String?
-  @NSManaged var duration: Int
-  @NSManaged var questions: [Question]?
-  
-  var qcmQuestions: [QuestionProtocol]? {
+  func addQuestion(question: QuestionProtocol) {
     
-    if let questions = questions {
-      for question in questions {
-        do {
-          try question.fetch()
-        }
-        catch {
-        }
-      }
-    }
-    return questions
   }
   
-  func addQuestion(qcmQuestion: QuestionProtocol) {
-    if let quest = qcmQuestion as? Question {
-      if questions != nil {
-        self.questions!.append(quest)
-      }
-      else {
-        questions = [quest]
-      }
-    }
+  
+  init?(_ map: Map) {
+    
+  }
+  
+  mutating func mapping(map: Map) {
+    
+    name     <- map["name"]
+    duration <- map["duration"]
   }
 }

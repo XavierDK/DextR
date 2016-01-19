@@ -8,11 +8,11 @@
 
 import Foundation
 
-@objc protocol QCMProtocol {
+protocol QCMProtocol {
   
   var name : String? {get set}
-  var duration : Int {get set}
-  var qcmQuestions : [QuestionProtocol]? {get}
+  var duration : Int? {get set}
+  var questions : [QuestionProtocol]? {get}
   
-  func addQuestion(qcmQuestion: QuestionProtocol)
+  func addQuestion(question: QuestionProtocol)
 }

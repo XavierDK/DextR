@@ -33,7 +33,7 @@ class QCMMenuViewModel {
     
     API.allQcms().subscribeNext {[unowned self] (qcms) -> Void in
       if let qcms = qcms {
-        self.qcms.value = Array(qcms)
+        self.qcms.value = qcms
       }
       }.addDisposableTo(disposeBag)
   }

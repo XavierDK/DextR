@@ -9,15 +9,55 @@
 import Foundation
 import Parse
 import RxSwift
+import Alamofire
+import ObjectMapper
 
 class QCMAPIService: QCMAPIProtocol {
   
-  func saveQCM(name: String, duration: String) -> Observable<Bool> {
+  private let qcmUrl = "https://api.parse.com/1/classes/QCM"
+  
+  func createQCM(name: String, duration: String) -> Observable<RequestResult<QCMProtocol>> {
     
-    let qcm = QCM()
-    qcm.name = name
-    qcm.duration = Int(duration)!
-    return qcm.rx_save()
+    return Observable.create { [unowned self] observer in
+      
+      let headers = [
+        "X-Parse-Application-Id": AppConstant.ApplicationKey,
+        "X-Parse-REST-API-Key": AppConstant.RestAPIKey,
+        "X-Parse-Revocable-Session": "1",
+        "Content-Type": "application/json"
+      ]
+      
+      let parameters = [
+        "name": name,
+        "duration": duration
+      ]
+      
+      let request = Alamofire.request(.POST, self.qcmUrl, parameters: parameters, encoding: .JSON, headers: headers)
+        .responseJSON(completionHandler: { response -> Void in
+          
+          if let error = response.result.error {
+            observer.onError(error)
+          }
+          else {
+            print (response.result.value)
+            
+            if let value = response.result.value {
+              if let code = value["code"] as? Int,
+                let message = value["error"] as? String {
+                  observer.on(.Next(RequestResult<QCMProtocol>(isSuccess: false, code: code, message: message, modelObject: nil)))
+              }
+              else {
+                let qcm = Mapper<QCM>().map(value)
+                observer.on(.Next(RequestResult<QCMProtocol>(isSuccess: true, code: nil, message: nil, modelObject: qcm)))
+              }
+            }
+            observer.on(.Completed)
+          }
+        })
+      return AnonymousDisposable({
+        request.cancel()
+      })
+    }
   }
   
   func saveQuestionForQcm(title: String, type: String, qcm: QCMProtocol) -> Observable<Bool> {
@@ -44,13 +84,17 @@ class QCMAPIService: QCMAPIProtocol {
     return answer.rx_save()
   }
   
-  func allQcms() -> Observable<[QCM]?> {
+  func allQcms() -> Observable<[QCMProtocol]?> {
     
-    return QCM.query()!.rx_findObjects()
+    return Observable.create { [unowned self] observer in
+      
+      return AnonymousDisposable({})
+    }
+
   }
   
   func saveQCM(qcm: QCM) {
-    qcm.saveInBackground()
+//    qcm.saveInBackground()
   }
 }
 

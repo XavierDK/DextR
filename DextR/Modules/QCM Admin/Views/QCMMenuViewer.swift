@@ -37,7 +37,7 @@ class QCMMenuViewer : UITableViewController {
     
     let currentUser = accountAPI?.currentAccount()
     
-    if  currentUser?.admin.boolValue == true {
+    if  currentUser?.admin?.boolValue == true {
       
       setupAdminConfig()
     }

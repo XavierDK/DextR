@@ -77,7 +77,8 @@ class AccountSignUpViewModel {
             .asDriver(onErrorJustReturn: RequestResult<AccountProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
         }
         .flatMapLatest { signUpedIn -> Driver<RequestResult<AccountProtocol>> in
-          return wireframe.promptFor("Inscription", message: signUpedIn.message, cancelAction: "OK", actions: [])
+          let message = signUpedIn.message ?? "Inscription réussie"
+          return wireframe.promptFor("Inscription", message: message, cancelAction: "OK", actions: [])
             .map { _ in
               signUpedIn
             }

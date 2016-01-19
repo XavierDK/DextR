@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc protocol AnswerProtocol {
+protocol AnswerProtocol {
   
   var title : String? {get set}
   var correct : Bool {get set}

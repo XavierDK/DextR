@@ -11,9 +11,9 @@ import RxSwift
 
 protocol QCMAPIProtocol {
 
-  func saveQCM(name: String, duration: String) -> Observable<Bool>
+  func createQCM(name: String, duration: String) -> Observable<RequestResult<QCMProtocol>>
   func saveQuestionForQcm(title: String, type: String, qcm: QCMProtocol) -> Observable<Bool>
   func saveAnswerForQuestion(title: String, correct: Bool, question: QuestionProtocol) -> Observable<Bool>
   
-  func allQcms() -> Observable<[QCM]?>
+  func allQcms() -> Observable<[QCMProtocol]?>
 }

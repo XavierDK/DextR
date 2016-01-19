@@ -2,27 +2,31 @@
 //  Account.swift
 //  DextR
 //
-//  Created by Xavier De Koninck on 02/01/2016.
+//  Created by Xavier De Koninck on 19/01/2016.
 //  Copyright © 2016 LinkValue. All rights reserved.
 //
 
 import Foundation
+import ObjectMapper
 
-import Foundation
-import Parse
-
-class Account : PFUser, AccountProtocol {
+struct Account: AccountProtocol, Mappable {
   
-  override class func initialize() {
-    struct Static {
-      static var onceToken : dispatch_once_t = 0;
-    }
-    dispatch_once(&Static.onceToken) {
-      self.registerSubclass()
-    }
+  var email : String?
+  var firstname : String?
+  var lastname : String?
+  var password : String?
+  var admin : Bool?
+  
+  init?(_ map: Map) {
+    
   }
   
-  @NSManaged var firstname : String?
-  @NSManaged var lastname : String?
-  @NSManaged var admin : Bool
+  mutating func mapping(map: Map) {
+    
+    email     <- map["email"]
+    firstname <- map["firstname"]
+    lastname  <- map["lastname"]
+    password  <- map["password"]
+    admin     <- map["admin"]
+  }
 }

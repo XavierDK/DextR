@@ -29,9 +29,11 @@ class QCMPresenterViewModel {
         name.value = qcmName
       }
       
-      duration.value = qcm.duration
+      if let dur = qcm.duration {
+        duration.value = dur
+      }
       
-      if let qcmQuestions = qcm.qcmQuestions {
+      if let qcmQuestions = qcm.questions {
         questions.value = qcmQuestions
       }
   }
