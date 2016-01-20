@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 import RxSwift
 
 @UIApplicationMain
@@ -19,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {            
-    
-    self.setupParse(launchOptions)
+
     // Override point for customization after application launch.
     let splitViewController = self.window!.rootViewController as! UISplitViewController
     splitViewController.delegate = self
@@ -54,22 +52,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
   func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
       return false
   }
-  
-  // MARK: - Setup Parse
-  
-  func setupParse(launchOptions: [NSObject: AnyObject]?) {
-  
-    Parse.enableLocalDatastore()
-    // Initialize Parse.
-    
-    Question.initialize()
-    Answer.initialize()
-    
-    Parse.setApplicationId("AzeYq7Ju0aiQDvuNfJ27vQ7fYBRCLXRBj3sNkCd8",
-      clientKey: "6BY4HFhRYtljRlW8G8PcXcjVZBuN8bhe9AW8hc9n")
-    // [Optional] Track statistics around application opens.
-    PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-  }
-
 }
 

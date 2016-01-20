@@ -15,6 +15,7 @@ struct Account: AccountProtocol, Mappable {
   var firstname : String?
   var lastname : String?
   var password : String?
+  var sessionToken : String?
   var admin : Bool?
   
   init?(_ map: Map) {
@@ -23,10 +24,11 @@ struct Account: AccountProtocol, Mappable {
   
   mutating func mapping(map: Map) {
     
-    email     <- map["email"]
-    firstname <- map["firstname"]
-    lastname  <- map["lastname"]
-    password  <- map["password"]
-    admin     <- map["admin"]
+    email         <- map["email"]
+    firstname     <- map["firstname"]
+    lastname      <- map["lastname"]
+    password      <- map["password"]
+    sessionToken  <- map["sessionToken"]
+    admin         <- map["admin"]
   }
 }

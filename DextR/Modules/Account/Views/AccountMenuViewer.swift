@@ -33,9 +33,23 @@ class AccountMenuViewer : UITableViewController {
   }
   
   func checkConnected() {
-    if self.accountAPI?.currentAccount() != nil {
-      router?.showQCMMenuFromVC(self)
-    }
+    
+    accountAPI?.currentAccount()?.subscribe(onNext: { [weak self] (account) -> Void in
+      
+      if let _self = self {
+        if account.isSuccess == true {
+          _self.router?.showQCMMenuFromVC(_self)
+        }
+      }
+      }, onError: { (error) -> Void in
+        
+      }, onCompleted: { () -> Void in
+        
+      }, onDisposed: { () -> Void in
+        
+    })
+      .addDisposableTo(disposeBag)
+    
   }
   
   func setupTableView() {

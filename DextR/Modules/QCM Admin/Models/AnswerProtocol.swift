@@ -12,5 +12,4 @@ protocol AnswerProtocol {
   
   var title : String? {get set}
   var correct : Bool {get set}
-  var questionParent : QuestionProtocol? {get}
 }

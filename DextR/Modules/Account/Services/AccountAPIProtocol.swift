@@ -13,6 +13,6 @@ protocol AccountAPIProtocol {
   
   func logIn(email: String, password: String) -> Observable<RequestResult<AccountProtocol>>
   func signUp(email: String, password: String, firstname: String, lastname: String) -> Observable<RequestResult<AccountProtocol>>
-  func currentAccount() -> AccountProtocol?
-  func logOut()
+  func currentAccount() -> Observable<RequestResult<AccountProtocol>>?
+  func logOut() -> Observable<RequestResult<AccountProtocol>>?
 }

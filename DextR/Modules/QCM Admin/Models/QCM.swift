@@ -13,17 +13,7 @@ struct QCM: QCMProtocol, Mappable {
   
   var name : String?
   var duration : Int?
-  var questions : [QuestionProtocol]? {
-    get {
-      return []
-    }
-  }
-  
-  func addQuestion(question: QuestionProtocol) {
-    
-  }
-  
-  
+
   init?(_ map: Map) {
     
   }

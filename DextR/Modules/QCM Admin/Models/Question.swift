@@ -7,68 +7,38 @@
 //
 
 import Foundation
-import Parse
+import ObjectMapper
 
-class Question: PFObject, PFSubclassing, QuestionProtocol {
-  
-  override class func initialize() {
-    struct Static {
-      static var onceToken : dispatch_once_t = 0;
-    }
-    dispatch_once(&Static.onceToken) {
-      self.registerSubclass()
-    }
-  }
-  
-  static func parseClassName() -> String {
-    return "Question"
-  }
-  
-//  var qcmParent : QCMProtocol? {
-//    return qcm
-//  }
-  
-  var qcmAnswers : [AnswerProtocol]?  {
-    return answers
-  }
+class Question: QuestionProtocol, Mappable {
     
-  func addAnswer(qcmAnswer: AnswerProtocol) {
-    if let answ = qcmAnswer as? Answer {
-      if var answers = answers {
-        answers.append(answ)
-      }
-      else {
-        answers = [answ]
-      }
-    }
-  }
+  var title : String?
+  var type : QuestionType?
   
-  var questionType: QuestionType {
+  required init?(_ map: Map) {
     
-    if let type = type {
-      if let questionType = QuestionType(rawValue: type.integerValue) {
-        return questionType
-      }
-    }
-    return .Unknown
   }
   
-//  var questionType: QuestionType {
-//    get {
-//      if let t = type {
-//        if let qt = QuestionType(rawValue: t) {
-//          return qt
-//        }
-//      }
-//      return .Unknown
-//    }
-//    set {      
-//      type = newValue.rawValue
-//    }
-//  }
-  
-  @NSManaged var title : String?
-  @NSManaged var type : NSNumber?
-//  @NSManaged var qcm: QCM?
-  @NSManaged var answers: [Answer]?
+  func mapping(map: Map) {
+    
+    let transform = TransformOf<QuestionType, Int>(fromJSON: { (value: Int?) -> QuestionType? in
+      
+      if let value = value {
+        let questionType = QuestionType(rawValue: value)
+        if let questionType = questionType {
+          return questionType
+        }
+      }
+      return .Unknown
+      
+      }, toJSON: { (value: QuestionType?) -> Int? in
+        // transform value from Int? to String?
+        if let value = value {
+          return value.rawValue
+        }
+        return 0
+    })
+    
+    title <- map["title"]
+    type  <- (map["type"], transform)
+  }
 }

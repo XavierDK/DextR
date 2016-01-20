@@ -16,6 +16,12 @@ class AppRouter: NSObject {
   let signUpIdentifier = "AccountSignUpViewer"
   let logInIdentifier = "AccountLogInViewer"
   
+  func showRootViewsFromVC(vc: UIViewController) {
+    vc.masterViewController?.popToRootViewControllerAnimated(true)
+    vc.detailsViewController?.popToRootViewControllerAnimated(true)
+  }
+
+  
   func showSignUpFromVC(vc: UIViewController, withCompletion completion: () -> ()) {
     
     vc.detailsViewController?.popToRootViewControllerAnimated(false)

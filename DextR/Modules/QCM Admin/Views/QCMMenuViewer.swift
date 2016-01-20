@@ -35,12 +35,21 @@ class QCMMenuViewer : UITableViewController {
       )
     )
     
-    let currentUser = accountAPI?.currentAccount()
+    self.setupConfig()
     
-    if  currentUser?.admin?.boolValue == true {
+    accountAPI?.currentAccount()?.subscribe(onNext: { [unowned self] (account) -> Void in
       
-      setupAdminConfig()
-    }
+      if  account.modelObject?.admin?.boolValue == true {
+        self.setupAdminConfig()
+      }
+      }, onError: { (error) -> Void in
+        
+      }, onCompleted: { () -> Void in
+        
+      }, onDisposed: { () -> Void in
+        
+    })
+      .addDisposableTo(disposeBag)
     
     self.setupTableView()
   }
@@ -51,18 +60,56 @@ class QCMMenuViewer : UITableViewController {
     self.navigationItem.hidesBackButton = true
   }
   
+  func setupConfig() {
+    
+    let logoutButton = UIBarButtonItem(title: "Déconnexion", style: .Plain, target: nil, action: nil)
+    logoutButton.tintColor = UIColor.whiteColor()
+    self.navigationItem.leftBarButtonItem = logoutButton
+    logoutButton.rx_tap
+      .subscribe({ [weak self] (event) -> () in
+        
+        if let _self = self {
+        _self.accountAPI?.logOut()?.subscribe(onNext: { [weak self] (account) -> Void in
+          
+          if let _self = self {
+          if account.isSuccess == true {
+            
+            _self.wireframe?.promptFor("Déconnexion", message: "Vous avez été déconnecté", cancelAction: "OK", actions: [])
+              .subscribeNext({ (action) -> Void in
+                
+                _self.router?.showRootViewsFromVC(_self)
+              })
+              .addDisposableTo(_self.disposeBag)
+            }
+          }
+          }, onError: { (error) -> Void in
+            
+          }, onCompleted: { () -> Void in
+            
+          }, onDisposed: { () -> Void in
+            
+        })
+          .addDisposableTo(_self.disposeBag)
+        }
+        })
+      .addDisposableTo(disposeBag)
+  }
+  
   func setupAdminConfig() {
     
     let newButton = UIBarButtonItem(barButtonSystemItem: .Add, target: nil, action: nil)
     newButton.tintColor = UIColor.whiteColor()
-    self.navigationItem.rightBarButtonItem = newButton    
+    self.navigationItem.rightBarButtonItem = newButton
     newButton.rx_tap
-      .subscribe({ [unowned self] (event) -> () in
-        self.router?.showQCMCreatorFromVC(self, withCompletion: { () -> () in
-          self.viewModel?.reloadQcms()
+      .subscribe({ [weak self] (event) -> () in
+        
+        if let _self = self {
+          _self.router?.showQCMCreatorFromVC(_self, withCompletion: { () -> () in
+            _self.viewModel?.reloadQcms()
+          })
+        }
         })
-      })
-    .addDisposableTo(disposeBag)
+      .addDisposableTo(disposeBag)
   }
   
   func setupTableView() {

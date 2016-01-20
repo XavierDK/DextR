@@ -14,11 +14,11 @@ class QCMMenuViewModel {
   
   var disposeBag = DisposeBag()
   
-  let qcms: Variable<Array<QCMProtocol>> = Variable([])
+  let qcms: Variable<Array<QCMProtocol>> = Variable(Array<QCMProtocol>())
   
   let API: QCMAPIProtocol
   
-  init(    
+  init(
     dependency: (
     API: QCMAPIProtocol,
     wireframe: Wireframe
@@ -31,10 +31,18 @@ class QCMMenuViewModel {
   
   func reloadQcms() {
     
-    API.allQcms().subscribeNext {[unowned self] (qcms) -> Void in
-      if let qcms = qcms {
-        self.qcms.value = qcms
+    API.allQcms().map({ (res) in
+      res.modelObject
+    })
+      .subscribeNext {[unowned self] (qcms) -> Void in
+        
+        if let qcms = qcms {
+          self.qcms.value = qcms
+        }
+        else {
+          self.qcms.value = []
+        }
       }
-      }.addDisposableTo(disposeBag)
+      .addDisposableTo(disposeBag)
   }
 }

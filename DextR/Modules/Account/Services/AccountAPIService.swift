@@ -16,8 +16,9 @@ class AccountAPIService : AccountAPIProtocol {
   private let loginUrl = "https://api.parse.com/1/login"
   private let signupUrl = "https://api.parse.com/1/users"
   private let currentUserUrl = "https://api.parse.com/1/users/me"
+  private let logoutUrl = "https://api.parse.com/1/logout"
   
-  private let currentSessionToken = "__Current_Session_Token__"
+  private let currentSessionTokenKey = "__Current_Session_Token__"
   
   func logIn(email: String, password: String) -> Observable<RequestResult<AccountProtocol>> {
     
@@ -50,8 +51,8 @@ class AccountAPIService : AccountAPIProtocol {
               else {
                 let account = Mapper<Account>().map(value)
                 
-                if let account = account {
-                  self.saveCurrentSessionToken(account)
+                if let sessionToken = account?.sessionToken {
+                  self.saveCurrentSessionToken(sessionToken)
                 }
                 
                 observer.on(.Next(RequestResult<AccountProtocol>(isSuccess: true, code: nil, message: nil, modelObject: account)))
@@ -103,8 +104,8 @@ class AccountAPIService : AccountAPIProtocol {
               else {
                 let account = Mapper<Account>().map(value)
                 
-                if let account = account {
-                  self.saveCurrentSessionToken(account)
+                if let sessionToken = account?.sessionToken {
+                  self.saveCurrentSessionToken(sessionToken)
                 }
                 
                 observer.on(.Next(RequestResult<AccountProtocol>(isSuccess: true, code: nil, message: nil, modelObject: account)))
@@ -121,17 +122,105 @@ class AccountAPIService : AccountAPIProtocol {
   
   func saveCurrentSessionToken(sessionToken: String) {
     
+    NSUserDefaults.standardUserDefaults().setObject(sessionToken, forKey: self.currentSessionTokenKey)
+    NSUserDefaults.standardUserDefaults().synchronize()
   }
   
-  func currentAccount() -> AccountProtocol? {
+  func resetCurrentSessionToken() {
+    NSUserDefaults.standardUserDefaults().removeObjectForKey(self.currentSessionTokenKey)
+    NSUserDefaults.standardUserDefaults().synchronize()
+  }
+  
+  func currentAccount() -> Observable<RequestResult<AccountProtocol>>? {
     
-//    let currentAccount = NSUserDefaults.standardUserDefaults().objectForKey(self.currentAccountKey)
+    let currentSessionToken = NSUserDefaults.standardUserDefaults().objectForKey(self.currentSessionTokenKey)
     
-//    let currentAccount = Mapper<Account>().map(currentAccountJson)
+    if let currentSessionToken = currentSessionToken as? String {
+      return Observable.create { [unowned self] observer in
+        let headers = [
+          "X-Parse-Application-Id": AppConstant.ApplicationKey,
+          "X-Parse-REST-API-Key": AppConstant.RestAPIKey,
+          "X-Parse-Session-Token": currentSessionToken
+        ]
+        
+        let request = Alamofire.request(.GET, self.currentUserUrl, parameters: nil, headers: headers)
+          .responseJSON(completionHandler: { response -> Void in
+            
+            if let error = response.result.error {
+              observer.onError(error)
+            }
+            else {
+              print (response.result.value)
+              
+              if let value = response.result.value {
+                if let code = value["code"] as? Int,
+                  let message = value["error"] as? String {
+                    observer.on(.Next(RequestResult<AccountProtocol>(isSuccess: false, code: code, message: message, modelObject: nil)))
+                }
+                else {
+                  let account = Mapper<Account>().map(value)
+                  
+                  if let sessionToken = account?.sessionToken {
+                    self.saveCurrentSessionToken(sessionToken)
+                  }
+                  
+                  observer.on(.Next(RequestResult<AccountProtocol>(isSuccess: true, code: nil, message: nil, modelObject: account)))
+                }
+              }
+              observer.on(.Completed)
+            }
+          })
+        return AnonymousDisposable({
+          request.cancel()
+        })
+      }
+    }
     return nil
   }
   
-  func logOut() {
+  func logOut() -> Observable<RequestResult<AccountProtocol>>? {
     
+    let currentSessionToken = NSUserDefaults.standardUserDefaults().objectForKey(self.currentSessionTokenKey)
+    
+    if let currentSessionToken = currentSessionToken as? String {
+      return Observable.create { [unowned self] observer in
+        
+        let headers = [
+          "X-Parse-Application-Id": AppConstant.ApplicationKey,
+          "X-Parse-REST-API-Key": AppConstant.RestAPIKey,
+          "X-Parse-Session-Token": currentSessionToken
+        ]
+        
+        let request = Alamofire.request(.POST, self.logoutUrl, parameters: nil, headers: headers)
+          .responseJSON(completionHandler: { response -> Void in
+            
+            if let error = response.result.error {
+              observer.onError(error)
+            }
+            else {
+              print (response.result.value)
+              
+              if let value = response.result.value {
+                if let code = value["code"] as? Int,
+                  let message = value["error"] as? String {
+                    observer.on(.Next(RequestResult<AccountProtocol>(isSuccess: false, code: code, message: message, modelObject: nil)))
+                }
+                else {
+                  let account = Mapper<Account>().map(value)
+                  
+                  self.resetCurrentSessionToken()
+                  
+                  observer.on(.Next(RequestResult<AccountProtocol>(isSuccess: true, code: nil, message: nil, modelObject: account)))
+                }
+              }
+              observer.on(.Completed)
+            }
+          })
+        return AnonymousDisposable({
+          request.cancel()
+        })
+      }
+    }
+    return nil
   }
 }

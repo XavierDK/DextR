@@ -13,25 +13,25 @@ enum QuestionType: Int {
   case Selection
   case TrueFalse
   
-  static func valueFromString(str: String) -> QuestionType {
+  static func convertString(str: String) -> QuestionType {
     
-    if str == "Vrai/Faux" {
-      return .TrueFalse
+    var questionType: QuestionType = .Unknown
+    switch str {
+    case "Vrai/Faux":
+      questionType = .TrueFalse
+      break
+    case "Séléction":
+      questionType = .Selection
+      break
+    default:
+      break
     }
-    else if str == "Séléction" {
-      return .Selection
-    }
-    
-    return .Unknown
+    return questionType
   }
 }
 
 protocol QuestionProtocol {
   
   var title : String? {get set}
-  var questionType : QuestionType {get}
-//  var qcmParent : QCMProtocol? {get}
-  var qcmAnswers : [AnswerProtocol]? {get}
-  
-  func addAnswer(qcmAnswer: AnswerProtocol)
+  var type : QuestionType? {get set}
 }

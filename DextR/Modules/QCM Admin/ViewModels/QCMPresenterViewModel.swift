@@ -33,8 +33,8 @@ class QCMPresenterViewModel {
         duration.value = dur
       }
       
-      if let qcmQuestions = qcm.questions {
-        questions.value = qcmQuestions
-      }
+//      if let qcmQuestions = qcm.questions {
+//        questions.value = qcmQuestions
+//      }
   }
 }
