@@ -9,9 +9,9 @@
 import Foundation
 
 enum QuestionType: Int {
-  case Unknown
-  case Selection
-  case TrueFalse
+  case Unknown = 0
+  case Selection = 1
+  case TrueFalse = 2
   
   static func convertString(str: String) -> QuestionType {
     

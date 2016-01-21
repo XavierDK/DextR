@@ -65,11 +65,13 @@ class QCMCreatorViewer: UITableViewController {
       .addDisposableTo(disposeBag)
     
     viewModel.qcmCreated
-      .driveNext { [unowned self] created in
-        self.navigationController?.popToRootViewControllerAnimated(false)
+      .driveNext { [weak self] created in
         
-        if let completion = self.completionSuccess {
-          completion()
+        if created.isSuccess == true {
+
+          if let completion = self?.completionSuccess {
+            completion()
+          }
         }
       }
       .addDisposableTo(disposeBag)

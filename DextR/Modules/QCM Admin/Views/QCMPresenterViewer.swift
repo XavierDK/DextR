@@ -78,6 +78,7 @@ class QCMPresenterViewer: UIViewController {
       newQuestionOutlet.rx_tap.subscribeNext { [unowned self] _ in
         self.router?.showQuestionCreatorFromVC(self, andQCM: qcm, withCompletion: { () -> () in
           
+          self.navigationController?.navigationController?.popViewControllerAnimated(true)
         })
         }
         .addDisposableTo(disposeBag)

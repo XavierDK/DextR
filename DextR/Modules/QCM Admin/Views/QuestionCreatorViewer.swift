@@ -76,8 +76,13 @@ class QuestionCreatorViewer: UITableViewController {
         .addDisposableTo(disposeBag)
       
       viewModel?.questionCreated
-        .driveNext { created in
-          print("Question created in \(created)")
+        .driveNext { [weak self] created in
+          if created.isSuccess == true {
+            
+            if let completion = self?.completionSuccess {
+              completion()
+            }
+          }
         }
         .addDisposableTo(disposeBag)
       

@@ -34,13 +34,13 @@ class QCMMenuViewModel {
     API.allQcms().map({ (res) in
       res.modelObject
     })
-      .subscribeNext {[unowned self] (qcms) -> Void in
+      .subscribeNext {[weak self] (qcms) -> Void in
         
         if let qcms = qcms {
-          self.qcms.value = qcms
+          self?.qcms.value = qcms
         }
         else {
-          self.qcms.value = []
+          self?.qcms.value = []
         }
       }
       .addDisposableTo(disposeBag)

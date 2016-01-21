@@ -74,10 +74,10 @@ class QCMAPIService: QCMAPIProtocol {
       
       let parameters = [
         "title": title,
-        "type": "\(type.rawValue)"
+        "type": type.rawValue
       ]
       
-      let request = Alamofire.request(.POST, self.questionUrl, parameters: parameters, encoding: .JSON, headers: headers)
+      let request = Alamofire.request(.POST, self.questionUrl, parameters: parameters as? [String:AnyObject], encoding: .JSON, headers: headers)
         .responseJSON(completionHandler: { response -> Void in
           
           if let error = response.result.error {
@@ -103,7 +103,6 @@ class QCMAPIService: QCMAPIProtocol {
         request.cancel()
       })
     }
-
   }
   
   func saveAnswerForQuestion(title: String, correct: Bool, question: QuestionProtocol) -> Observable<Bool> {

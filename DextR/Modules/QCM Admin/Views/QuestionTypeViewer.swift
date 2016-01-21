@@ -47,13 +47,13 @@ class QuestionTypeViewer: UIViewController {
       }
       .addDisposableTo(disposeBag)
     
-    tableView.rx_modelSelected(String).subscribe { [unowned self] (event) -> Void in
+    tableView.rx_modelSelected(String).subscribe { [weak self] (event) -> Void in
       
       if let elem = event.element {
-        self.selectionSuccess?(elem)
+        self?.selectionSuccess?(elem)
       }
       
-      self.dismissViewControllerAnimated(true, completion: nil)
+      self?.dismissViewControllerAnimated(true, completion: nil)
     }
       .addDisposableTo(disposeBag)
   }

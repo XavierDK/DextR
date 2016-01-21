@@ -37,10 +37,10 @@ class QCMMenuViewer : UITableViewController {
     
     self.setupConfig()
     
-    accountAPI?.currentAccount()?.subscribe(onNext: { [unowned self] (account) -> Void in
+    accountAPI?.currentAccount()?.subscribe(onNext: { [weak self] (account) -> Void in
       
       if  account.modelObject?.admin?.boolValue == true {
-        self.setupAdminConfig()
+        self?.setupAdminConfig()
       }
       }, onError: { (error) -> Void in
         
@@ -105,6 +105,8 @@ class QCMMenuViewer : UITableViewController {
         
         if let _self = self {
           _self.router?.showQCMCreatorFromVC(_self, withCompletion: { () -> () in
+            
+            _self.navigationController?.popToRootViewControllerAnimated(false)
             _self.viewModel?.reloadQcms()
           })
         }
@@ -127,9 +129,10 @@ class QCMMenuViewer : UITableViewController {
     
     tableView
       .rx_modelSelected(QCMProtocol)
-      .subscribeNext { [unowned self] value in
-        
-        self.router?.showQCMPresenterFromVC(self, forQCM: value)
+      .subscribeNext { [weak self] value in
+        if let _self = self {
+          _self.router?.showQCMPresenterFromVC(_self, forQCM: value)
+        }
       }
       .addDisposableTo(disposeBag)
   }

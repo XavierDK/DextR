@@ -16,7 +16,7 @@ class QuestionCreatorViewModel {
   let validatedQuestionType: Driver<ValidationResult>
   let questionEnabled: Driver<Bool>
   let questionCreating: Driver<Bool>
-  let questionCreated: Driver<Bool>
+  let questionCreated: Driver<RequestResult<QuestionProtocol>>
   
   init(
     input: (
@@ -69,8 +69,9 @@ class QuestionCreatorViewModel {
             .trackActivity(activityIndicQuestion)
             .asDriver(onErrorJustReturn: RequestResult<QuestionProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
         }
-        .flatMapLatest { created -> Driver<RequestResult<QCMProtocol>>  in
+        .flatMapLatest { created -> Driver<RequestResult<QuestionProtocol>>  in
           let message = created.message ?? "La Question a été créé avec succès"
+          
           return wireframe.promptFor("Question", message: message, cancelAction: "OK", actions: [])
             .map { _ in
               created
