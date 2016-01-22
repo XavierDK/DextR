@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol AccountProtocol {
+protocol AccountProtocol: ParseProtocolModel {
   
   var email : String? {get set}
   var firstname : String? {get set}

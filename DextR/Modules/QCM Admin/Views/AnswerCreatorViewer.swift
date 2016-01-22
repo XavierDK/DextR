@@ -22,6 +22,8 @@ class AnswerCreatorViewer: UITableViewController {
   
   var disposeBag = DisposeBag()
   
+  var completionSuccess: (() -> ())?
+  
   var question: QuestionProtocol?
   
   var API: QCMAPIProtocol?
@@ -62,8 +64,12 @@ class AnswerCreatorViewer: UITableViewController {
         .addDisposableTo(disposeBag)
       
       viewModel.answerCreated
-        .driveNext { created in
-          print("Answer created in \(created)")
+        .driveNext { [weak self] created in
+          if created.isSuccess == true {
+            if let completion = self?.completionSuccess {
+              completion()
+            }
+          }
         }
         .addDisposableTo(disposeBag)
       

@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct ParseModel: Mappable {
+class ParseModel: Mappable, ParseProtocolModel {
   
   var objectId: String?
   var createdAt: NSDate?
@@ -17,11 +17,11 @@ struct ParseModel: Mappable {
   
   let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
   
-  init?(_ map: Map) {
+  required init?(_ map: Map) {
     
   }
   
-  mutating func mapping(map: Map) {
+  func mapping(map: Map) {
     
     let transform = TransformOf<NSDate, String>(fromJSON: { (value: String?) -> NSDate? in
       
@@ -36,15 +36,16 @@ struct ParseModel: Mappable {
       
       }, toJSON: { (value: NSDate?) -> String? in
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = self.dateFormat
-        if let dateString = dateFormatter.dateFromString(dateString) {
-          return datePublished
+        if let value = value {
+          let dateFormatter = NSDateFormatter()
+          dateFormatter.dateFormat = self.dateFormat
+          return dateFormatter.stringFromDate(value)
         }
+        return nil        
     })
-
     
     objectId     <- map["objectId"]
-    createdAt    <- map["duration"]
+    createdAt    <- (map["createdAt"], transform)
+    updatedAt    <- (map["updatedAt"], transform)
   }
 }

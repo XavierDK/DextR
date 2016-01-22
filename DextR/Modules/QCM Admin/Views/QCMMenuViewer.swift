@@ -22,6 +22,8 @@ class QCMMenuViewer : UITableViewController {
   var qcmAPI: QCMAPIProtocol?
   var wireframe: Wireframe?
   
+  var currentAccount : AccountProtocol?
+  
   var viewModel: QCMMenuViewModel?
   
   override func viewDidLoad() {
@@ -40,6 +42,8 @@ class QCMMenuViewer : UITableViewController {
     accountAPI?.currentAccount()?.subscribe(onNext: { [weak self] (account) -> Void in
       
       if  account.modelObject?.admin?.boolValue == true {
+        
+        self?.currentAccount = account.modelObject
         self?.setupAdminConfig()
       }
       }, onError: { (error) -> Void in
@@ -77,7 +81,7 @@ class QCMMenuViewer : UITableViewController {
             _self.wireframe?.promptFor("Déconnexion", message: "Vous avez été déconnecté", cancelAction: "OK", actions: [])
               .subscribeNext({ (action) -> Void in
                 
-                _self.router?.showRootViewsFromVC(_self)
+                _self.router?.showRootViewsFromVC(_self, animated: false)
               })
               .addDisposableTo(_self.disposeBag)
             }
@@ -106,7 +110,7 @@ class QCMMenuViewer : UITableViewController {
         if let _self = self {
           _self.router?.showQCMCreatorFromVC(_self, withCompletion: { () -> () in
             
-            _self.navigationController?.popToRootViewControllerAnimated(false)
+            _self.router?.showDetailsRootViewFromVC(_self, animated: false)
             _self.viewModel?.reloadQcms()
           })
         }
@@ -130,8 +134,14 @@ class QCMMenuViewer : UITableViewController {
     tableView
       .rx_modelSelected(QCMProtocol)
       .subscribeNext { [weak self] value in
+        
         if let _self = self {
-          _self.router?.showQCMPresenterFromVC(_self, forQCM: value)
+          if _self.currentAccount?.admin == true {
+            _self.router?.showQCMPresenterFromVC(_self, forQCM: value)
+          }
+          else if _self.currentAccount?.admin == false {
+            
+          }
         }
       }
       .addDisposableTo(disposeBag)

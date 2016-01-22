@@ -15,7 +15,7 @@ class AnswerCreatorViewModel {
   let validatedAnswerTitle: Driver<ValidationResult>
   let answerEnabled: Driver<Bool>
   let answerCreating: Driver<Bool>
-  let answerCreated: Driver<Bool>
+  let answerCreated: Driver<RequestResult<AnswerProtocol>>
   
   init(
     input: (
@@ -55,17 +55,17 @@ class AnswerCreatorViewModel {
       
       answerCreated = input.answerTaps.withLatestFrom(answerDatas)
         .flatMapLatest { (name, correct) in
-          return API.saveAnswerForQuestion(name, correct: correct, question: input.question)
+          return API.createAnswerForQuestion(name, correct: correct, question: input.question)
             .trackActivity(activityIndicAnswer)
-            .asDriver(onErrorJustReturn: false)
+            .asDriver(onErrorJustReturn: RequestResult<AnswerProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
         }
-        .flatMapLatest { created -> Driver<Bool> in
-          let message = created ? "Connexion réussi" : "La connexion a échouée"
-          return wireframe.promptFor("Erreur", message: message, cancelAction: "OK", actions: [])
+        .flatMapLatest { created -> Driver<RequestResult<AnswerProtocol>> in
+          let message = created.message ?? "La Réponse a été créé avec succès"
+          return wireframe.promptFor("Réponse", message: message, cancelAction: "OK", actions: [])
             .map { _ in
               created
             }
-            .asDriver(onErrorJustReturn: false)
+            .asDriver(onErrorJustReturn: RequestResult<AnswerProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
       }
   }
   

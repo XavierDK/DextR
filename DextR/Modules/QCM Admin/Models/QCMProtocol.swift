@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol QCMProtocol {
+protocol QCMProtocol: ParseProtocolModel {
   
   var name : String? {get set}
   var duration : Int? {get set}

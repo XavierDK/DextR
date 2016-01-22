@@ -9,16 +9,18 @@
 import Foundation
 import ObjectMapper
 
-struct QCM: QCMProtocol, Mappable {
+class QCM: ParseModel, QCMProtocol {
   
   var name : String?
   var duration : Int?
 
-  init?(_ map: Map) {
-    
+  required init?(_ map: Map) {
+    super.init(map)
   }
   
-  mutating func mapping(map: Map) {
+  override func mapping(map: Map) {
+    
+    super.mapping(map)
     
     name     <- map["name"]
     duration <- map["duration"]

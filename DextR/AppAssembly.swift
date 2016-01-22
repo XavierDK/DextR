@@ -78,6 +78,12 @@ extension SwinjectStoryboard {
       c.API = r.resolve(QCMAPIProtocol.self)
       c.wireframe = r.resolve(Wireframe.self)
     }
+    
+    defaultContainer.registerForStoryboard(QuestionPresenterViewer.self) { r, c in
+      c.router = r.resolve(AppRouter.self)
+      c.API = r.resolve(QCMAPIProtocol.self)
+      c.wireframe = r.resolve(Wireframe.self)
+    }
   }
 
 }

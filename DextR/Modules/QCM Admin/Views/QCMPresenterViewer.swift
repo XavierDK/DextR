@@ -29,11 +29,13 @@ class QCMPresenterViewer: UIViewController {
   
   var router: AppRouter?
   
+  var viewModel: QCMPresenterViewModel?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     if let qcm = self.qcm {
-      let viewModel = QCMPresenterViewModel(
+      self.viewModel = QCMPresenterViewModel(
         qcm: qcm,
         dependency: (
           API: self.API!,
@@ -41,12 +43,12 @@ class QCMPresenterViewer: UIViewController {
         )
       )
       
-      viewModel.name
+      viewModel?.name
         .asObservable()
         .bindTo(nameOutlet.rx_text)
         .addDisposableTo(disposeBag)
       
-      viewModel.duration
+      viewModel?.duration
         .asObservable()
         .map({ (d) in
           "\(d)"
@@ -54,10 +56,9 @@ class QCMPresenterViewer: UIViewController {
         .bindTo(durationOutlet.rx_text)
         .addDisposableTo(disposeBag)
       
-      
       questionsOutlet.registerNib(UINib(nibName: "BasicCell", bundle: nil), forCellReuseIdentifier: questionCell)
       
-      viewModel.questions.asObservable()
+      viewModel?.questions.asObservable()
         .bindTo(questionsOutlet.rx_itemsWithCellIdentifier(questionCell, cellType: UITableViewCell.self)) { (row, element, cell) in
           if let c = cell as? BasicCell {
             
@@ -68,28 +69,34 @@ class QCMPresenterViewer: UIViewController {
       
       questionsOutlet
         .rx_modelSelected(QuestionProtocol)
-        .subscribeNext { value in
-          DefaultWireframe.presentAlert("Tapped `\(value.title)`")
+        .subscribeNext { [weak self] value in
+          
+          if let _self = self {
+            _self.router?.showQuestionPresenterFromVC(_self, forQuestion: value)
+          }
         }
         .addDisposableTo(disposeBag)
     }
     
     if let qcm = self.qcm {
-      newQuestionOutlet.rx_tap.subscribeNext { [unowned self] _ in
-        self.router?.showQuestionCreatorFromVC(self, andQCM: qcm, withCompletion: { () -> () in
-          
-          self.navigationController?.navigationController?.popViewControllerAnimated(true)
-        })
+      newQuestionOutlet.rx_tap.subscribeNext { [weak self] _ in
+        
+        if let _self = self {
+          self?.router?.showQuestionCreatorFromVC(_self, andQCM: qcm, withCompletion: { () -> () in            
+            self?.navigationController?.popViewControllerAnimated(true)
+          })
         }
+      }
         .addDisposableTo(disposeBag)
     }
-    
   }
   
   override func viewWillAppear(animated: Bool) {
     
     super.viewWillAppear(animated)
     self.navigationItem.hidesBackButton = true
+    
+    self.viewModel?.reloadQuestions()
   }
   
   override func willMoveToParentViewController(parent: UIViewController?) {

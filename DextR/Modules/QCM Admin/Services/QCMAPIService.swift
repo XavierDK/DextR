@@ -16,8 +16,9 @@ class QCMAPIService: QCMAPIProtocol {
   
   private let qcmUrl = "https://api.parse.com/1/classes/QCM"
   private let questionUrl = "https://api.parse.com/1/classes/Question"
+  private let answerUrl = "https://api.parse.com/1/classes/Answer"
   
-  func createQCM(name: String, duration: String) -> Observable<RequestResult<QCMProtocol>> {
+  func createQCM(name: String, duration: NSNumber) -> Observable<RequestResult<QCMProtocol>> {
     
     return Observable.create { [unowned self] observer in
       
@@ -74,7 +75,8 @@ class QCMAPIService: QCMAPIProtocol {
       
       let parameters = [
         "title": title,
-        "type": type.rawValue
+        "type": type.rawValue,
+        "qcm": ParseHelper.createJsonPointer("QCM", objectId: qcm.objectId!)
       ]
       
       let request = Alamofire.request(.POST, self.questionUrl, parameters: parameters as? [String:AnyObject], encoding: .JSON, headers: headers)
@@ -105,15 +107,49 @@ class QCMAPIService: QCMAPIProtocol {
     }
   }
   
-  func saveAnswerForQuestion(title: String, correct: Bool, question: QuestionProtocol) -> Observable<Bool> {
-    
+  func createAnswerForQuestion(title: String, correct: Bool, question: QuestionProtocol) -> Observable<RequestResult<AnswerProtocol>> {
+   
     return Observable.create { [unowned self] observer in
- 
+      
+      let headers = [
+        "X-Parse-Application-Id": AppConstant.ApplicationKey,
+        "X-Parse-REST-API-Key": AppConstant.RestAPIKey,
+        "X-Parse-Revocable-Session": "1",
+        "Content-Type": "application/json"
+      ]
+      
+      let parameters = [
+        "title": title,
+        "correct": correct,
+        "question": ParseHelper.createJsonPointer("Question", objectId: question.objectId!)
+      ]
+      
+      let request = Alamofire.request(.POST, self.answerUrl, parameters: parameters as? [String:AnyObject], encoding: .JSON, headers: headers)
+        .responseJSON(completionHandler: { response -> Void in
+          
+          if let error = response.result.error {
+            observer.onError(error)
+          }
+          else {
+            print (response.result.value)
+            
+            if let value = response.result.value {
+              if let code = value["code"] as? Int,
+                let message = value["error"] as? String {
+                  observer.on(.Next(RequestResult<AnswerProtocol>(isSuccess: false, code: code, message: message, modelObject: nil)))
+              }
+              else {
+                let answer = Mapper<Answer>().map(value)
+                observer.on(.Next(RequestResult<AnswerProtocol>(isSuccess: true, code: nil, message: nil, modelObject: answer)))
+              }
+            }
+            observer.on(.Completed)
+          }
+        })
       return AnonymousDisposable({
- 
+        request.cancel()
       })
     }
-
   }
   
   func allQcms() -> Observable<RequestResult<Array<QCMProtocol>>> {
@@ -163,8 +199,98 @@ class QCMAPIService: QCMAPIProtocol {
     }
   }
   
-  func saveQCM(qcm: QCM) {
-    //    qcm.saveInBackground()
+  func allQuestionsForQcm(qcm: QCMProtocol) -> Observable<RequestResult<Array<QuestionProtocol>>> {
+    
+    return Observable.create { [unowned self] observer in
+      
+      let headers = [
+        "X-Parse-Application-Id": AppConstant.ApplicationKey,
+        "X-Parse-REST-API-Key": AppConstant.RestAPIKey
+      ]            
+      
+      let request = Alamofire.request(.GET, self.questionUrl, parameters: ["where": ["qcm": ParseHelper.createJsonPointer("QCM", objectId: qcm.objectId!)]], encoding: .URLEncodedInURL, headers: headers)
+        .responseJSON(completionHandler: { response -> Void in
+          
+          if let error = response.result.error {
+            observer.onError(error)
+          }
+          else {
+            print (response.result.value)
+            
+            if let value = response.result.value {
+              if let code = value["code"] as? Int,
+                let message = value["error"] as? String {
+                  observer.on(.Next(RequestResult<Array<QuestionProtocol>>(isSuccess: false, code: code, message: message, modelObject: nil)))
+              }
+              else {
+                var arrayQuestions = Array<QuestionProtocol>()
+                if let results = value["results"] {
+                  if let results = results as? Array<[String:AnyObject]> {
+                    for questionJson in results {
+                      let question = Mapper<Question>().map(questionJson)
+                      if let question = question {
+                        arrayQuestions.append(question)
+                      }
+                    }
+                  }
+                }
+                observer.on(.Next(RequestResult<Array<QuestionProtocol>>(isSuccess: true, code: nil, message: nil, modelObject: arrayQuestions)))
+              }
+            }
+            observer.on(.Completed)
+          }
+        })
+      return AnonymousDisposable({
+        request.cancel()
+      })
+    }
+  }
+  
+  func allAnswersForQuestion(question: QuestionProtocol) -> Observable<RequestResult<Array<AnswerProtocol>>> {
+  
+    return Observable.create { [unowned self] observer in
+      
+      let headers = [
+        "X-Parse-Application-Id": AppConstant.ApplicationKey,
+        "X-Parse-REST-API-Key": AppConstant.RestAPIKey
+      ]
+      
+      let request = Alamofire.request(.GET, self.answerUrl, parameters: ["where": ["question": ParseHelper.createJsonPointer("Question", objectId: question.objectId!)]], encoding: .URLEncodedInURL, headers: headers)
+        .responseJSON(completionHandler: { response -> Void in
+          
+          if let error = response.result.error {
+            observer.onError(error)
+          }
+          else {
+            print (response.result.value)
+            
+            if let value = response.result.value {
+              if let code = value["code"] as? Int,
+                let message = value["error"] as? String {
+                  observer.on(.Next(RequestResult<Array<AnswerProtocol>>(isSuccess: false, code: code, message: message, modelObject: nil)))
+              }
+              else {
+                var arrayAnswers = Array<AnswerProtocol>()
+                if let results = value["results"] {
+                  if let results = results as? Array<[String:AnyObject]> {
+                    for answerJson in results {
+                      let answer = Mapper<Answer>().map(answerJson)
+                      if let answer = answer {
+                        arrayAnswers.append(answer)
+                      }
+                    }
+                  }
+                }
+                observer.on(.Next(RequestResult<Array<AnswerProtocol>>(isSuccess: true, code: nil, message: nil, modelObject: arrayAnswers)))
+              }
+            }
+            observer.on(.Completed)
+          }
+        })
+      return AnonymousDisposable({
+        request.cancel()
+      })
+    }
   }
 }
 

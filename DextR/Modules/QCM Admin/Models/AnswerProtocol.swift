@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol AnswerProtocol {
+protocol AnswerProtocol: ParseProtocolModel {
   
   var title : String? {get set}
-  var correct : Bool {get set}
+  var correct : Bool? {get set}
 }

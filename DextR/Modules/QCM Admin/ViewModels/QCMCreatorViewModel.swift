@@ -66,7 +66,8 @@ class QCMCreatorViewModel {
       
       qcmCreated = input.qcmTaps.withLatestFrom(qcmDatas)
         .flatMapLatest { (name, duration) in
-          return API.createQCM(name, duration: duration)
+          
+          return API.createQCM(name, duration: Int(duration)!)
             .trackActivity(activityIndicQcm)
             .asDriver(onErrorJustReturn: RequestResult<QCMProtocol>(isSuccess: false, code: 500, message: "Une erreur est survenue", modelObject: nil))
         }

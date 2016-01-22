@@ -30,7 +30,7 @@ enum QuestionType: Int {
   }
 }
 
-protocol QuestionProtocol {
+protocol QuestionProtocol: ParseProtocolModel {
   
   var title : String? {get set}
   var type : QuestionType? {get set}

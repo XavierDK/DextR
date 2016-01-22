@@ -9,16 +9,18 @@
 import Foundation
 import ObjectMapper
 
-class Question: QuestionProtocol, Mappable {
+class Question: ParseModel, QuestionProtocol {
     
   var title : String?
   var type : QuestionType?
   
   required init?(_ map: Map) {
-    
+    super.init(map)
   }
   
-  func mapping(map: Map) {
+  override func mapping(map: Map) {
+    
+    super.mapping(map)
     
     let transform = TransformOf<QuestionType, Int>(fromJSON: { (value: Int?) -> QuestionType? in
       

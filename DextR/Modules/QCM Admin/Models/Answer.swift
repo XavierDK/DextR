@@ -7,10 +7,23 @@
 //
 
 import Foundation
-import Parse
+import ObjectMapper
 
-class Answer: AnswerProtocol {
+class Answer: ParseModel, AnswerProtocol {
  
-  @NSManaged var title: String?
-  @NSManaged var correct: Bool
+  var title: String?
+  var correct: Bool?
+  
+  required init?(_ map: Map) {
+    super.init(map)
+  }
+  
+  override func mapping(map: Map) {
+    
+    super.mapping(map)
+    
+    title     <- map["title"]
+    correct   <- map["type"]
+  }
+
 }

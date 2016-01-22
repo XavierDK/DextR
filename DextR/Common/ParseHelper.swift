@@ -8,7 +8,15 @@
 
 import Foundation
 
-struct ParseHelper {
+class ParseHelper {
 
+  static  func createJsonPointer(className: String, objectId: String) -> [String: String] {
+    
+    return ["__type": "Pointer", "className": className, "objectId": objectId]    
+  }
   
+  static  func createStringPointer(className: String, objectId: String) -> String {
+    
+    return "{\"__type\":\"Pointer\",\"className\":\"\(className)\",\"objectId\":\"\(objectId)\"}"
+  }
 }

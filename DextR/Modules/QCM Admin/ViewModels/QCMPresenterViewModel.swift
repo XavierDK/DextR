@@ -18,6 +18,10 @@ class QCMPresenterViewModel {
   let duration: Variable<Int> = Variable(0)
   let questions: Variable<Array<QuestionProtocol>> = Variable([])
   
+  let API: QCMAPIProtocol
+  
+  let qcm: QCMProtocol
+  
   init(
     qcm: QCMProtocol,
     dependency: (
@@ -25,6 +29,9 @@ class QCMPresenterViewModel {
     wireframe: Wireframe
     )
     ) {
+      
+      self.qcm = qcm
+      
       if let qcmName = qcm.name {
         name.value = qcmName
       }
@@ -33,8 +40,25 @@ class QCMPresenterViewModel {
         duration.value = dur
       }
       
-//      if let qcmQuestions = qcm.questions {
-//        questions.value = qcmQuestions
-//      }
+      self.API = dependency.API
+      
+      self.reloadQuestions()
+  }
+  
+  func reloadQuestions() {
+    
+    API.allQuestionsForQcm(qcm).map({ (res) in
+      res.modelObject
+    })
+      .subscribeNext {[weak self] (questions) -> Void in
+        
+        if let questions = questions {
+          self?.questions.value = questions
+        }
+        else {
+          self?.questions.value = []
+        }
+      }
+      .addDisposableTo(disposeBag)
   }
 }

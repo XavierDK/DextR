@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct Account: AccountProtocol, Mappable {
+class Account: ParseModel, AccountProtocol {
   
   var email : String?
   var firstname : String?
@@ -18,11 +18,14 @@ struct Account: AccountProtocol, Mappable {
   var sessionToken : String?
   var admin : Bool?
   
-  init?(_ map: Map) {
+  required init?(_ map: Map) {
     
+    super.init(map)
   }
   
-  mutating func mapping(map: Map) {
+  override func mapping(map: Map) {
+    
+    super.mapping(map)
     
     email         <- map["email"]
     firstname     <- map["firstname"]

@@ -16,9 +16,17 @@ class AppRouter: NSObject {
   let signUpIdentifier = "AccountSignUpViewer"
   let logInIdentifier = "AccountLogInViewer"
   
-  func showRootViewsFromVC(vc: UIViewController) {
-    vc.masterViewController?.popToRootViewControllerAnimated(true)
-    vc.detailsViewController?.popToRootViewControllerAnimated(true)
+  func showRootViewsFromVC(vc: UIViewController, animated: Bool) {
+    vc.masterViewController?.popToRootViewControllerAnimated(animated)
+    vc.detailsViewController?.popToRootViewControllerAnimated(animated)
+  }
+  
+  func showDetailsRootViewFromVC(vc: UIViewController, animated: Bool) {
+    vc.detailsViewController?.popToRootViewControllerAnimated(animated)
+  }
+  
+  func showMasterRootViewFromVC(vc: UIViewController, animated: Bool) {
+    vc.masterViewController?.popToRootViewControllerAnimated(animated)
   }
 
   
@@ -51,6 +59,9 @@ class AppRouter: NSObject {
   let qcmCreatorIdentifier = "QCMCreatorViewer"
   let qcmPresenterIdentifier = "QCMPresenterViewer"
   let questionCreatorIdentifier = "QuestionCreatorViewer"
+  let questionPresenterIdentifier = "QuestionPresenterViewer"
+  let answerCreatorIdentifier = "AnswerCreatorViewer"
+  
   func showQCMMenuFromVC(vc: UIViewController) {
     
     vc.masterViewController?.popToRootViewControllerAnimated(false)
@@ -90,6 +101,26 @@ class AppRouter: NSObject {
       questionCreator.qcm = qcm
       questionCreator.completionSuccess = completion
       vc.detailsViewController?.pushViewController(questionCreator, animated: true)
+    }
+  }
+  
+  func showQuestionPresenterFromVC(vc: UIViewController, forQuestion question: QuestionProtocol) {
+    
+    let questionPresenter = viewControllerForIdentifier(questionPresenterIdentifier)
+    if let questionPresenter = questionPresenter as? QuestionPresenterViewer {
+      questionPresenter.question = question
+      vc.detailsViewController?.pushViewController(questionPresenter, animated: true)
+    }
+  }
+  
+  func showAnswerCreatorFromVC(vc: UIViewController, andQuestion question: QuestionProtocol, withCompletion completion: () -> ()) {
+    
+    let answerCreator = viewControllerForIdentifier(answerCreatorIdentifier)
+    if let answerCreator = answerCreator as? AnswerCreatorViewer {
+      
+      answerCreator.question = question
+      answerCreator.completionSuccess = completion
+      vc.detailsViewController?.pushViewController(answerCreator, animated: true)
     }
   }
 
