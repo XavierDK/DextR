@@ -13,6 +13,7 @@ class QCM: ParseModel, QCMProtocol {
   
   var name : String?
   var duration : Int?
+  var questions: Array<QuestionProtocol> = Array<QuestionProtocol>()
 
   required init?(_ map: Map) {
     super.init(map)
@@ -24,5 +25,6 @@ class QCM: ParseModel, QCMProtocol {
     
     name     <- map["name"]
     duration <- map["duration"]
+    questions <- map["questions"]
   }
 }

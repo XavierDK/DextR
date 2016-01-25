@@ -13,6 +13,7 @@ class Answer: ParseModel, AnswerProtocol {
  
   var title: String?
   var correct: Bool?
+  var order: Int?
   
   required init?(_ map: Map) {
     super.init(map)
@@ -24,6 +25,7 @@ class Answer: ParseModel, AnswerProtocol {
     
     title     <- map["title"]
     correct   <- map["type"]
+    order     <- map["order"]
   }
 
 }

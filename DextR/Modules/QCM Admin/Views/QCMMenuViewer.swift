@@ -139,8 +139,8 @@ class QCMMenuViewer : UITableViewController {
           if _self.currentAccount?.admin == true {
             _self.router?.showQCMPresenterFromVC(_self, forQCM: value)
           }
-          else if _self.currentAccount?.admin == false {
-            
+          else if _self.currentAccount == nil {
+            _self.router?.showQCMPlayerFromVC(_self, forQCM: value)
           }
         }
       }

@@ -13,6 +13,8 @@ class Question: ParseModel, QuestionProtocol {
     
   var title : String?
   var type : QuestionType?
+  var order : Int?
+  var answers: Array<AnswerProtocol> = Array<AnswerProtocol>()
   
   required init?(_ map: Map) {
     super.init(map)
@@ -33,14 +35,16 @@ class Question: ParseModel, QuestionProtocol {
       return .Unknown
       
       }, toJSON: { (value: QuestionType?) -> Int? in
-        // transform value from Int? to String?
+      
         if let value = value {
           return value.rawValue
         }
         return 0
     })
     
-    title <- map["title"]
-    type  <- (map["type"], transform)
+    title   <- map["title"]
+    type    <- (map["type"], transform)
+    order   <- map["order"]
+    answers <- map["answers"]
   }
 }

@@ -1,14 +1,11 @@
 PODS:
   - Alamofire (3.1.5)
-  - Bolts/Tasks (1.6.0)
   - ObjectMapper (1.1.1)
-  - Parse (1.12.0):
-    - Bolts/Tasks (~> 1.5)
   - RxBlocking (2.1.0):
     - RxSwift (~> 2.0)
   - RxCocoa (2.1.0):
     - RxSwift (~> 2.0)
-  - RxDataSources (0.2):
+  - RxDataSources (0.3):
     - RxCocoa (~> 2.0)
     - RxSwift (~> 2.0)
   - RxSwift (2.1.0)
@@ -19,7 +16,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - ObjectMapper (~> 1.1)
-  - Parse
   - RxBlocking (~> 2.0)
   - RxCocoa (~> 2.0)
   - RxDataSources (~> 0.1)
@@ -29,12 +25,10 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
-  Bolts: f52a250053bb517ca874523c3913776359ab3def
   ObjectMapper: 4143abed1dbd49b73d75092fe8fa1c88ed6434b7
-  Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
   RxBlocking: fa297def258d85c5beae9ed507f94645260b3747
   RxCocoa: 79b5feb8378545336e756a0a33fcf5e95050b71c
-  RxDataSources: 09a9230e8e39b5c5df49b7d63e29c2262ebb5cca
+  RxDataSources: 6993a25d61c795f8d127a78f688b71376d5a4dad
   RxSwift: 110fb07f81c17c2c3b3254d168363057b1880d18
   RxTests: 94c67ffc37c36bd8c7aec90a84601a3db142be94
   Swinject: f1ec058cc1809929fd5b962c3a8a8277827389b6

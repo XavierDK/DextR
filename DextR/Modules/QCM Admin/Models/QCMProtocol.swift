@@ -12,4 +12,5 @@ protocol QCMProtocol: ParseProtocolModel {
   
   var name : String? {get set}
   var duration : Int? {get set}
+  var questions: Array<QuestionProtocol> {get set}
 }

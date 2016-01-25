@@ -19,7 +19,7 @@ class QuestionPresenterViewModel {
   let answers: Variable<Array<AnswerProtocol>> = Variable([])
   
   let API: QCMAPIProtocol
-  let question: QuestionProtocol
+  var question: QuestionProtocol
   
   init(
     question: QuestionProtocol,
@@ -28,7 +28,6 @@ class QuestionPresenterViewModel {
     wireframe: Wireframe
     )
     ) {
-      
       self.question = question
       
       if let questionTitle = question.title {
@@ -46,7 +45,7 @@ class QuestionPresenterViewModel {
   
   func reloadAnswers() {
     
-    API.allAnswersForQuestion(question).map({ (res) in
+    API.allAnswersForQuestion(&question).map({ (res) in
       res.modelObject
     })
       .subscribeNext {[weak self] (answers) -> Void in

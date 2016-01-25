@@ -12,4 +12,5 @@ protocol AnswerProtocol: ParseProtocolModel {
   
   var title : String? {get set}
   var correct : Bool? {get set}
+  var order : Int? {get set}
 }

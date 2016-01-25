@@ -34,4 +34,6 @@ protocol QuestionProtocol: ParseProtocolModel {
   
   var title : String? {get set}
   var type : QuestionType? {get set}
+  var order : Int? {get set}
+  var answers: Array<AnswerProtocol> {get set}
 }

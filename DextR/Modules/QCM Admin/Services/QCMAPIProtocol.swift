@@ -16,6 +16,6 @@ protocol QCMAPIProtocol {
   func createAnswerForQuestion(title: String, correct: Bool, question: QuestionProtocol) -> Observable<RequestResult<AnswerProtocol>>
   
   func allQcms() -> Observable<RequestResult<Array<QCMProtocol>>>
-  func allQuestionsForQcm(qcm: QCMProtocol) -> Observable<RequestResult<Array<QuestionProtocol>>>
-  func allAnswersForQuestion(question: QuestionProtocol) -> Observable<RequestResult<Array<AnswerProtocol>>>
+  func allQuestionsForQcm(inout qcm: QCMProtocol) -> Observable<RequestResult<Array<QuestionProtocol>>>
+  func allAnswersForQuestion(inout question: QuestionProtocol) -> Observable<RequestResult<Array<AnswerProtocol>>>  
 }

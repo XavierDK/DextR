@@ -16,6 +16,7 @@ extension SwinjectStoryboard {
     defaultContainer.register(AppRouter.self) { _ in AppRouter() }
     self.setupAccount()
     self.setupQCMAdmin()
+    self.setupQCMPlayer()
   }
   
   class func setupAccount() {
@@ -85,5 +86,16 @@ extension SwinjectStoryboard {
       c.wireframe = r.resolve(Wireframe.self)
     }
   }
-
+  
+  class func setupQCMPlayer() {
+    
+    defaultContainer.register(QCMResultAPIProtocol.self) { _ in QCMResultAPIService() }
+    defaultContainer.register(Wireframe.self) { _ in DefaultWireframe() }
+    
+    defaultContainer.registerForStoryboard(QCMPlayerViewer.self) { r, c in
+      c.qcmResultAPI = r.resolve(QCMResultAPIProtocol.self)
+      c.qcmAPI = r.resolve(QCMAPIProtocol.self)
+      c.wireframe = r.resolve(Wireframe.self)
+    }
+  }
 }

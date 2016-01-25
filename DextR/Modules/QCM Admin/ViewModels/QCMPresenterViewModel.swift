@@ -20,7 +20,7 @@ class QCMPresenterViewModel {
   
   let API: QCMAPIProtocol
   
-  let qcm: QCMProtocol
+  var qcm: QCMProtocol
   
   init(
     qcm: QCMProtocol,
@@ -47,7 +47,7 @@ class QCMPresenterViewModel {
   
   func reloadQuestions() {
     
-    API.allQuestionsForQcm(qcm).map({ (res) in
+    API.allQuestionsForQcm(&qcm).map({ (res) in
       res.modelObject
     })
       .subscribeNext {[weak self] (questions) -> Void in

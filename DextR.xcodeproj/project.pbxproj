@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		252BC3D91C4C329D00EECD32 /* QuestionTypeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252BC3D81C4C329D00EECD32 /* QuestionTypeViewer.swift */; };
 		253B8CB41C511E7B00550F1E /* ParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B8CB31C511E7B00550F1E /* ParseModel.swift */; };
+		2543BBBC1C52293B00EC1140 /* QCMPlayerViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543BBBB1C52293B00EC1140 /* QCMPlayerViewer.swift */; };
+		2543BBBE1C52296300EC1140 /* QCMStarterViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543BBBD1C52296300EC1140 /* QCMStarterViewer.swift */; };
+		2543BBC01C522A1100EC1140 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2543BBBF1C522A1100EC1140 /* Account.storyboard */; };
+		2543BBC21C522A6100EC1140 /* QCMAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2543BBC11C522A6100EC1140 /* QCMAdmin.storyboard */; };
+		2543BBC41C522DDE00EC1140 /* QCMPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2543BBC31C522DDE00EC1140 /* QCMPlayer.storyboard */; };
+		2543BBC61C52313A00EC1140 /* QCMPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543BBC51C52313A00EC1140 /* QCMPlayerViewModel.swift */; };
+		2543BBC81C52319800EC1140 /* QCMResultAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543BBC71C52319800EC1140 /* QCMResultAPIProtocol.swift */; };
+		2543BBCA1C5231C900EC1140 /* QCMResultAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543BBC91C5231C900EC1140 /* QCMResultAPIService.swift */; };
+		2543BBCC1C523A2E00EC1140 /* QCMSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543BBCB1C523A2E00EC1140 /* QCMSessionProtocol.swift */; };
+		2543BBCE1C523BB600EC1140 /* QuestionAnswersProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543BBCD1C523BB600EC1140 /* QuestionAnswersProtocol.swift */; };
+		2543BBD01C523CA400EC1140 /* AnswerResultProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543BBCF1C523CA400EC1140 /* AnswerResultProtocol.swift */; };
+		2543BBD21C523F4000EC1140 /* QCMSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543BBD11C523F4000EC1140 /* QCMSession.swift */; };
+		2543BBD41C523F5800EC1140 /* QuestionAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543BBD31C523F5800EC1140 /* QuestionAnswers.swift */; };
+		2543BBD61C523F6C00EC1140 /* AnswerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543BBD51C523F6C00EC1140 /* AnswerResult.swift */; };
 		25470F991C4D5B24004C2095 /* AccountAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25470F981C4D5B24004C2095 /* AccountAPIService.swift */; };
 		25470F9B1C4D5B8A004C2095 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25470F9A1C4D5B8A004C2095 /* AppConstant.swift */; };
 		25470F9D1C4E6D30004C2095 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25470F9C1C4E6D30004C2095 /* RequestResult.swift */; };
@@ -52,15 +66,6 @@
 		25C6E26A1C386C6E00A6CDFD /* AccountValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2691C386C6E00A6CDFD /* AccountValidationService.swift */; };
 		25C6E26C1C386D3B00A6CDFD /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E26B1C386D3B00A6CDFD /* Wireframe.swift */; };
 		25C6E26E1C386EC700A6CDFD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E26D1C386EC700A6CDFD /* ActivityIndicator.swift */; };
-		25C6E2791C38720300A6CDFD /* Observable+ParseCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2701C38720300A6CDFD /* Observable+ParseCreate.swift */; };
-		25C6E27A1C38720300A6CDFD /* ParseRxCallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2711C38720300A6CDFD /* ParseRxCallbacks.swift */; };
-		25C6E27B1C38720300A6CDFD /* PFAnonymousUtils+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2721C38720300A6CDFD /* PFAnonymousUtils+Rx.swift */; };
-		25C6E27C1C38720300A6CDFD /* PFCloud+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2731C38720300A6CDFD /* PFCloud+Rx.swift */; };
-		25C6E27D1C38720300A6CDFD /* PFGeoPoint+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2741C38720300A6CDFD /* PFGeoPoint+Rx.swift */; };
-		25C6E27E1C38720300A6CDFD /* PFObject+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2751C38720300A6CDFD /* PFObject+Rx.swift */; };
-		25C6E27F1C38720300A6CDFD /* PFPush+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2761C38720300A6CDFD /* PFPush+Rx.swift */; };
-		25C6E2801C38720300A6CDFD /* PFQuery+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2771C38720300A6CDFD /* PFQuery+Rx.swift */; };
-		25C6E2811C38720300A6CDFD /* PFUser+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2781C38720300A6CDFD /* PFUser+Rx.swift */; };
 		25C6E2831C3873D200A6CDFD /* AccountProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2821C3873D200A6CDFD /* AccountProtocol.swift */; };
 		25C6E2871C38864A00A6CDFD /* AccountSignUpViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2861C38864A00A6CDFD /* AccountSignUpViewer.swift */; };
 		25C6E2891C3886B300A6CDFD /* AccountSignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2881C3886B300A6CDFD /* AccountSignUpViewModel.swift */; };
@@ -95,6 +100,20 @@
 		17BB0B13C7C451253EB6A5D5 /* Pods-DextR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DextR.release.xcconfig"; path = "Pods/Target Support Files/Pods-DextR/Pods-DextR.release.xcconfig"; sourceTree = "<group>"; };
 		252BC3D81C4C329D00EECD32 /* QuestionTypeViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionTypeViewer.swift; path = "Modules/QCM Admin/Views/QuestionTypeViewer.swift"; sourceTree = "<group>"; };
 		253B8CB31C511E7B00550F1E /* ParseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseModel.swift; path = Common/ParseModel.swift; sourceTree = "<group>"; };
+		2543BBBB1C52293B00EC1140 /* QCMPlayerViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMPlayerViewer.swift; path = "Modules/QCM Player/Views/QCMPlayerViewer.swift"; sourceTree = "<group>"; };
+		2543BBBD1C52296300EC1140 /* QCMStarterViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMStarterViewer.swift; path = "Modules/QCM Player/Views/QCMStarterViewer.swift"; sourceTree = "<group>"; };
+		2543BBBF1C522A1100EC1140 /* Account.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Account.storyboard; path = Modules/Account/Views/Account.storyboard; sourceTree = "<group>"; };
+		2543BBC11C522A6100EC1140 /* QCMAdmin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = QCMAdmin.storyboard; path = "Modules/QCM Admin/Views/QCMAdmin.storyboard"; sourceTree = "<group>"; };
+		2543BBC31C522DDE00EC1140 /* QCMPlayer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = QCMPlayer.storyboard; path = "Modules/QCM Player/Views/QCMPlayer.storyboard"; sourceTree = "<group>"; };
+		2543BBC51C52313A00EC1140 /* QCMPlayerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMPlayerViewModel.swift; path = "Modules/QCM Player/ViewModels/QCMPlayerViewModel.swift"; sourceTree = "<group>"; };
+		2543BBC71C52319800EC1140 /* QCMResultAPIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMResultAPIProtocol.swift; path = "Modules/QCM Player/Services/QCMResultAPIProtocol.swift"; sourceTree = "<group>"; };
+		2543BBC91C5231C900EC1140 /* QCMResultAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMResultAPIService.swift; path = "Modules/QCM Player/Services/QCMResultAPIService.swift"; sourceTree = "<group>"; };
+		2543BBCB1C523A2E00EC1140 /* QCMSessionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMSessionProtocol.swift; path = "Modules/QCM Player/Models/QCMSessionProtocol.swift"; sourceTree = "<group>"; };
+		2543BBCD1C523BB600EC1140 /* QuestionAnswersProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionAnswersProtocol.swift; path = "Modules/QCM Player/Models/QuestionAnswersProtocol.swift"; sourceTree = "<group>"; };
+		2543BBCF1C523CA400EC1140 /* AnswerResultProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnswerResultProtocol.swift; path = "Modules/QCM Player/Models/AnswerResultProtocol.swift"; sourceTree = "<group>"; };
+		2543BBD11C523F4000EC1140 /* QCMSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMSession.swift; path = "Modules/QCM Player/Models/QCMSession.swift"; sourceTree = "<group>"; };
+		2543BBD31C523F5800EC1140 /* QuestionAnswers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionAnswers.swift; path = "Modules/QCM Player/Models/QuestionAnswers.swift"; sourceTree = "<group>"; };
+		2543BBD51C523F6C00EC1140 /* AnswerResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnswerResult.swift; path = "Modules/QCM Player/Models/AnswerResult.swift"; sourceTree = "<group>"; };
 		25470F981C4D5B24004C2095 /* AccountAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountAPIService.swift; path = Modules/Account/Services/AccountAPIService.swift; sourceTree = "<group>"; };
 		25470F9A1C4D5B8A004C2095 /* AppConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		25470F9C1C4E6D30004C2095 /* RequestResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestResult.swift; path = Common/RequestResult.swift; sourceTree = "<group>"; };
@@ -144,15 +163,6 @@
 		25C6E2691C386C6E00A6CDFD /* AccountValidationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountValidationService.swift; path = Modules/Account/Services/AccountValidationService.swift; sourceTree = "<group>"; };
 		25C6E26B1C386D3B00A6CDFD /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wireframe.swift; path = Common/Wireframe.swift; sourceTree = "<group>"; };
 		25C6E26D1C386EC700A6CDFD /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = Common/ActivityIndicator.swift; sourceTree = "<group>"; };
-		25C6E2701C38720300A6CDFD /* Observable+ParseCreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Observable+ParseCreate.swift"; path = "Common/Parse+RxSwift/Observable+ParseCreate.swift"; sourceTree = "<group>"; };
-		25C6E2711C38720300A6CDFD /* ParseRxCallbacks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseRxCallbacks.swift; path = "Common/Parse+RxSwift/ParseRxCallbacks.swift"; sourceTree = "<group>"; };
-		25C6E2721C38720300A6CDFD /* PFAnonymousUtils+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PFAnonymousUtils+Rx.swift"; path = "Common/Parse+RxSwift/PFAnonymousUtils+Rx.swift"; sourceTree = "<group>"; };
-		25C6E2731C38720300A6CDFD /* PFCloud+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PFCloud+Rx.swift"; path = "Common/Parse+RxSwift/PFCloud+Rx.swift"; sourceTree = "<group>"; };
-		25C6E2741C38720300A6CDFD /* PFGeoPoint+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PFGeoPoint+Rx.swift"; path = "Common/Parse+RxSwift/PFGeoPoint+Rx.swift"; sourceTree = "<group>"; };
-		25C6E2751C38720300A6CDFD /* PFObject+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PFObject+Rx.swift"; path = "Common/Parse+RxSwift/PFObject+Rx.swift"; sourceTree = "<group>"; };
-		25C6E2761C38720300A6CDFD /* PFPush+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PFPush+Rx.swift"; path = "Common/Parse+RxSwift/PFPush+Rx.swift"; sourceTree = "<group>"; };
-		25C6E2771C38720300A6CDFD /* PFQuery+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PFQuery+Rx.swift"; path = "Common/Parse+RxSwift/PFQuery+Rx.swift"; sourceTree = "<group>"; };
-		25C6E2781C38720300A6CDFD /* PFUser+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PFUser+Rx.swift"; path = "Common/Parse+RxSwift/PFUser+Rx.swift"; sourceTree = "<group>"; };
 		25C6E2821C3873D200A6CDFD /* AccountProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountProtocol.swift; path = Modules/Account/Models/AccountProtocol.swift; sourceTree = "<group>"; };
 		25C6E2861C38864A00A6CDFD /* AccountSignUpViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSignUpViewer.swift; path = Modules/Account/Views/AccountSignUpViewer.swift; sourceTree = "<group>"; };
 		25C6E2881C3886B300A6CDFD /* AccountSignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSignUpViewModel.swift; path = Modules/Account/ViewModels/AccountSignUpViewModel.swift; sourceTree = "<group>"; };
@@ -194,6 +204,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2543BBB71C5228D300EC1140 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2543BBCB1C523A2E00EC1140 /* QCMSessionProtocol.swift */,
+				2543BBCD1C523BB600EC1140 /* QuestionAnswersProtocol.swift */,
+				2543BBCF1C523CA400EC1140 /* AnswerResultProtocol.swift */,
+				2543BBD11C523F4000EC1140 /* QCMSession.swift */,
+				2543BBD31C523F5800EC1140 /* QuestionAnswers.swift */,
+				2543BBD51C523F6C00EC1140 /* AnswerResult.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2543BBB81C5228DB00EC1140 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2543BBBB1C52293B00EC1140 /* QCMPlayerViewer.swift */,
+				2543BBBD1C52296300EC1140 /* QCMStarterViewer.swift */,
+				2543BBC31C522DDE00EC1140 /* QCMPlayer.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2543BBB91C5228E300EC1140 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2543BBC51C52313A00EC1140 /* QCMPlayerViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		2543BBBA1C5228F700EC1140 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2543BBC71C52319800EC1140 /* QCMResultAPIProtocol.swift */,
+				2543BBC91C5231C900EC1140 /* QCMResultAPIService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		257971961C3DC8D1006B9DD2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,7 +316,6 @@
 			children = (
 				257971961C3DC8D1006B9DD2 /* Views */,
 				257971901C3DC830006B9DD2 /* ViewController+SplitAddition.swift */,
-				25C6E26F1C3871F300A6CDFD /* Parse+RxSwift */,
 				25C6E2591C3852CC00A6CDFD /* BindingExtension.swift */,
 				25C6E26B1C386D3B00A6CDFD /* Wireframe.swift */,
 				25C6E26D1C386EC700A6CDFD /* ActivityIndicator.swift */,
@@ -314,6 +363,7 @@
 				2579719B1C3DC9B3006B9DD2 /* AccountMenuViewer.swift */,
 				25C6E25B1C38547700A6CDFD /* AccountLogInViewer.swift */,
 				25C6E2861C38864A00A6CDFD /* AccountSignUpViewer.swift */,
+				2543BBBF1C522A1100EC1140 /* Account.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -336,22 +386,6 @@
 				25C6E2691C386C6E00A6CDFD /* AccountValidationService.swift */,
 			);
 			name = Services;
-			sourceTree = "<group>";
-		};
-		25C6E26F1C3871F300A6CDFD /* Parse+RxSwift */ = {
-			isa = PBXGroup;
-			children = (
-				25C6E2701C38720300A6CDFD /* Observable+ParseCreate.swift */,
-				25C6E2711C38720300A6CDFD /* ParseRxCallbacks.swift */,
-				25C6E2721C38720300A6CDFD /* PFAnonymousUtils+Rx.swift */,
-				25C6E2731C38720300A6CDFD /* PFCloud+Rx.swift */,
-				25C6E2741C38720300A6CDFD /* PFGeoPoint+Rx.swift */,
-				25C6E2751C38720300A6CDFD /* PFObject+Rx.swift */,
-				25C6E2761C38720300A6CDFD /* PFPush+Rx.swift */,
-				25C6E2771C38720300A6CDFD /* PFQuery+Rx.swift */,
-				25C6E2781C38720300A6CDFD /* PFUser+Rx.swift */,
-			);
-			name = "Parse+RxSwift";
 			sourceTree = "<group>";
 		};
 		25C6E28A1C38910300A6CDFD /* QCM Admin */ = {
@@ -388,6 +422,7 @@
 				257971881C3DB352006B9DD2 /* QCMPresenterViewer.swift */,
 				258ABE061C51A37B000B9D06 /* QuestionPresenterViewer.swift */,
 				252BC3D81C4C329D00EECD32 /* QuestionTypeViewer.swift */,
+				2543BBC11C522A6100EC1140 /* QCMAdmin.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -419,6 +454,10 @@
 		25C6E28F1C3891EA00A6CDFD /* QCM Player */ = {
 			isa = PBXGroup;
 			children = (
+				2543BBB71C5228D300EC1140 /* Models */,
+				2543BBB81C5228DB00EC1140 /* Views */,
+				2543BBB91C5228E300EC1140 /* ViewModels */,
+				2543BBBA1C5228F700EC1140 /* Services */,
 			);
 			name = "QCM Player";
 			sourceTree = "<group>";
@@ -558,7 +597,10 @@
 			files = (
 				2579719A1C3DC8D1006B9DD2 /* BasicCell.xib in Resources */,
 				25C6E2251C384DD800A6CDFD /* LaunchScreen.storyboard in Resources */,
+				2543BBC21C522A6100EC1140 /* QCMAdmin.storyboard in Resources */,
+				2543BBC01C522A1100EC1140 /* Account.storyboard in Resources */,
 				25C6E2221C384DD800A6CDFD /* Assets.xcassets in Resources */,
+				2543BBC41C522DDE00EC1140 /* QCMPlayer.storyboard in Resources */,
 				25C6E2201C384DD800A6CDFD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -679,44 +721,45 @@
 			files = (
 				257971991C3DC8D1006B9DD2 /* BasicCell.swift in Sources */,
 				255881321C4EDB0F0045FE25 /* Account.swift in Sources */,
-				25C6E27B1C38720300A6CDFD /* PFAnonymousUtils+Rx.swift in Sources */,
 				255881361C516B850045FE25 /* ParseProtocolModel.swift in Sources */,
 				25C6E2951C3892D100A6CDFD /* AnswerProtocol.swift in Sources */,
 				2579719E1C3DD7E0006B9DD2 /* QCMMenuViewModel.swift in Sources */,
+				2543BBCE1C523BB600EC1140 /* QuestionAnswersProtocol.swift in Sources */,
+				2543BBC61C52313A00EC1140 /* QCMPlayerViewModel.swift in Sources */,
 				2579719C1C3DC9B3006B9DD2 /* AccountMenuViewer.swift in Sources */,
+				2543BBD21C523F4000EC1140 /* QCMSession.swift in Sources */,
 				2579718D1C3DC42E006B9DD2 /* QCMAPIService.swift in Sources */,
 				257971851C3DACD4006B9DD2 /* QuestionCreatorViewer.swift in Sources */,
 				25C6E2911C38929100A6CDFD /* QCMProtocol.swift in Sources */,
 				252BC3D91C4C329D00EECD32 /* QuestionTypeViewer.swift in Sources */,
+				2543BBCA1C5231C900EC1140 /* QCMResultAPIService.swift in Sources */,
 				25C6E2891C3886B300A6CDFD /* AccountSignUpViewModel.swift in Sources */,
 				25470F9D1C4E6D30004C2095 /* RequestResult.swift in Sources */,
 				257971891C3DB352006B9DD2 /* QCMPresenterViewer.swift in Sources */,
 				258ABE091C51A3C6000B9D06 /* QuestionPresenterViewModel.swift in Sources */,
-				25C6E2791C38720300A6CDFD /* Observable+ParseCreate.swift in Sources */,
 				253B8CB41C511E7B00550F1E /* ParseModel.swift in Sources */,
 				25C6E25E1C38549000A6CDFD /* AccountLogInViewModel.swift in Sources */,
 				25C6E25C1C38547700A6CDFD /* AccountLogInViewer.swift in Sources */,
 				2579717F1C3DAAA2006B9DD2 /* QCMCreatorViewer.swift in Sources */,
-				25C6E2801C38720300A6CDFD /* PFQuery+Rx.swift in Sources */,
+				2543BBBC1C52293B00EC1140 /* QCMPlayerViewer.swift in Sources */,
 				2579718F1C3DC440006B9DD2 /* QCMValidationService.swift in Sources */,
-				25C6E27D1C38720300A6CDFD /* PFGeoPoint+Rx.swift in Sources */,
 				25470F991C4D5B24004C2095 /* AccountAPIService.swift in Sources */,
 				258ABE071C51A37B000B9D06 /* QuestionPresenterViewer.swift in Sources */,
 				2558813A1C5170090045FE25 /* ParseHelper.swift in Sources */,
 				25C6E2191C384DD800A6CDFD /* AppDelegate.swift in Sources */,
-				25C6E27A1C38720300A6CDFD /* ParseRxCallbacks.swift in Sources */,
 				25C6E29B1C38930D00A6CDFD /* Question.swift in Sources */,
+				2543BBD41C523F5800EC1140 /* QuestionAnswers.swift in Sources */,
 				2579717B1C3DA213006B9DD2 /* QCMValidationProtocol.swift in Sources */,
 				257971831C3DACAF006B9DD2 /* AnswerCreatorViewModel.swift in Sources */,
-				25C6E2811C38720300A6CDFD /* PFUser+Rx.swift in Sources */,
 				25C6E25A1C3852CC00A6CDFD /* BindingExtension.swift in Sources */,
-				25C6E27F1C38720300A6CDFD /* PFPush+Rx.swift in Sources */,
 				25C6E26E1C386EC700A6CDFD /* ActivityIndicator.swift in Sources */,
+				2543BBBE1C52296300EC1140 /* QCMStarterViewer.swift in Sources */,
+				2543BBD01C523CA400EC1140 /* AnswerResultProtocol.swift in Sources */,
 				25C6E2661C386C4B00A6CDFD /* AccountValidationProtocol.swift in Sources */,
-				25C6E27E1C38720300A6CDFD /* PFObject+Rx.swift in Sources */,
 				255881341C4EE2FE0045FE25 /* QCM.swift in Sources */,
 				257971911C3DC830006B9DD2 /* ViewController+SplitAddition.swift in Sources */,
 				25470F9B1C4D5B8A004C2095 /* AppConstant.swift in Sources */,
+				2543BBD61C523F6C00EC1140 /* AnswerResult.swift in Sources */,
 				2579717D1C3DA227006B9DD2 /* QCMCreatorViewModel.swift in Sources */,
 				25C6E26C1C386D3B00A6CDFD /* Wireframe.swift in Sources */,
 				25C6E2601C386B9400A6CDFD /* AccountAPIProtocol.swift in Sources */,
@@ -725,11 +768,12 @@
 				25C6E2831C3873D200A6CDFD /* AccountProtocol.swift in Sources */,
 				25C6E2931C3892BF00A6CDFD /* QuestionProtocol.swift in Sources */,
 				2579718B1C3DB389006B9DD2 /* QCMPresenterViewModel.swift in Sources */,
+				2543BBC81C52319800EC1140 /* QCMResultAPIProtocol.swift in Sources */,
 				257971871C3DACE3006B9DD2 /* AnswerCreatorViewer.swift in Sources */,
-				25C6E27C1C38720300A6CDFD /* PFCloud+Rx.swift in Sources */,
 				257971791C3DA1FA006B9DD2 /* QCMAPIProtocol.swift in Sources */,
 				25C6E2991C3892FD00A6CDFD /* Answer.swift in Sources */,
 				257971811C3DAC9C006B9DD2 /* QuestionCreatorViewModel.swift in Sources */,
+				2543BBCC1C523A2E00EC1140 /* QCMSessionProtocol.swift in Sources */,
 				25C6E2491C384F1700A6CDFD /* AppAssembly.swift in Sources */,
 				257971931C3DC881006B9DD2 /* QCMMenuViewer.swift in Sources */,
 				25C6E2561C3851D900A6CDFD /* AppRouter.swift in Sources */,

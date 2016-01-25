@@ -76,7 +76,8 @@ class QCMAPIService: QCMAPIProtocol {
       let parameters = [
         "title": title,
         "type": type.rawValue,
-        "qcm": ParseHelper.createJsonPointer("QCM", objectId: qcm.objectId!)
+        "qcm": ParseHelper.createJsonPointer("QCM", objectId: qcm.objectId!),
+        "order": (qcm.questions.last?.order ?? 0) + 1
       ]
       
       let request = Alamofire.request(.POST, self.questionUrl, parameters: parameters as? [String:AnyObject], encoding: .JSON, headers: headers)
@@ -121,7 +122,8 @@ class QCMAPIService: QCMAPIProtocol {
       let parameters = [
         "title": title,
         "correct": correct,
-        "question": ParseHelper.createJsonPointer("Question", objectId: question.objectId!)
+        "question": ParseHelper.createJsonPointer("Question", objectId: question.objectId!),
+        "order": (question.answers.last?.order ?? 0) + 1
       ]
       
       let request = Alamofire.request(.POST, self.answerUrl, parameters: parameters as? [String:AnyObject], encoding: .JSON, headers: headers)
@@ -199,7 +201,7 @@ class QCMAPIService: QCMAPIProtocol {
     }
   }
   
-  func allQuestionsForQcm(qcm: QCMProtocol) -> Observable<RequestResult<Array<QuestionProtocol>>> {
+  func allQuestionsForQcm(inout qcm: QCMProtocol) -> Observable<RequestResult<Array<QuestionProtocol>>> {
     
     return Observable.create { [unowned self] observer in
       
@@ -233,6 +235,13 @@ class QCMAPIService: QCMAPIProtocol {
                       }
                     }
                   }
+                  
+                  qcm.questions = arrayQuestions.sort({ (quest1, quest2) -> Bool in
+                    if quest1.order > quest2.order {
+                      return false
+                    }
+                    return true
+                  })
                 }
                 observer.on(.Next(RequestResult<Array<QuestionProtocol>>(isSuccess: true, code: nil, message: nil, modelObject: arrayQuestions)))
               }
@@ -246,7 +255,7 @@ class QCMAPIService: QCMAPIProtocol {
     }
   }
   
-  func allAnswersForQuestion(question: QuestionProtocol) -> Observable<RequestResult<Array<AnswerProtocol>>> {
+  func allAnswersForQuestion(inout question: QuestionProtocol) -> Observable<RequestResult<Array<AnswerProtocol>>> {
   
     return Observable.create { [unowned self] observer in
       
@@ -280,6 +289,13 @@ class QCMAPIService: QCMAPIProtocol {
                       }
                     }
                   }
+                  
+                  question.answers = arrayAnswers.sort({ (answ1, answ2) -> Bool in
+                    if answ1.order > answ2.order {
+                      return false
+                    }
+                    return true
+                  })
                 }
                 observer.on(.Next(RequestResult<Array<AnswerProtocol>>(isSuccess: true, code: nil, message: nil, modelObject: arrayAnswers)))
               }
