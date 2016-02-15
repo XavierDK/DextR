@@ -15,6 +15,8 @@ class QCMPlayerViewModel {
   let qcmPlayable: Variable<Bool> = Variable(false)
   let currentQuestion: Variable<QuestionProtocol?> = Variable(nil)
   
+  var answersObservables: [Observable<RequestResult<Array<AnswerProtocol>>>] = [Observable<RequestResult<Array<AnswerProtocol>>>]()
+  
   var disposeBag = DisposeBag()
   
   private var currentQuestionIndex: Array<QuestionProtocol>?
@@ -39,38 +41,70 @@ class QCMPlayerViewModel {
       self.qcmAPI =  dependency.qcmAPI
       self.qcm = input.qcm
       
+//      self.qcmAPI.allQuestionsForQcm(&qcm)
+//        .map { (res) in
+//          res.modelObject
+//        }
+//        .bindTo { (array) in
+      
+//          if let array = array {
+          
+//            array
+//              .subscribe(onNext: { (question) -> Void in
+//                
+//                var questionTmp = question
+//                self.answersObservables.append(self.qcmAPI.allAnswersForQuestion(&questionTmp))
+//                
+//                }, onError: { (error)  in
+//                  
+//                }, onCompleted: { () -> Void in
+//                  
+//                  self.answersObservables.concat()
+//                    .subscribe(onNext: { (res) -> Void in
+//                      }, onError: { (error) -> Void in
+//                      }, onCompleted: { () -> Void in
+//                        self.qcmPlayable.value = true
+//                      }, onDisposed: { () -> Void in
+//                    }).addDisposableTo(self.disposeBag)
+//                }, onDisposed: { ()  in
+//                  
+//              })
+//              .addDisposableTo(self.disposeBag)
+//          }
+//        }
+//        .addDisposableTo(self.disposeBag)
+      
       self.qcmAPI.allQuestionsForQcm(&qcm)
         .map { (res) in
           res.modelObject
         }
-        .subscribe({ (event) -> Void in
+        .subscribeNext { (array) in
           
-          switch event {
-          case .Next(let array):
-            if let array = array {
-              
-              array.toObservable()                
-                .subscribe(onNext: { (question) -> Void in
+          if let array = array {
+            
+            array.toObservable()
+              .subscribe(onNext: { (question) -> Void in
+                
+                var questionTmp = question
+                self.answersObservables.append(self.qcmAPI.allAnswersForQuestion(&questionTmp))
+                
+                }, onError: { (error)  in
                   
-                  var questionTmp = question
-                  self.qcmAPI.allAnswersForQuestion(&questionTmp).subscribe()
-                    .addDisposableTo(self.disposeBag)
+                }, onCompleted: { () -> Void in
                   
-                  }, onError: { (error)  in
+                  self.answersObservables.concat()
+                    .subscribe(onNext: { (res) -> Void in
+                      }, onError: { (error) -> Void in
+                      }, onCompleted: { () -> Void in
+                        self.qcmPlayable.value = true
+                      }, onDisposed: { () -> Void in
+                    }).addDisposableTo(self.disposeBag)
+                }, onDisposed: { ()  in
                   
-                  }, onCompleted: { () -> Void in
-                      self.qcmPlayable.value = true
-                  }, onDisposed: { ()  in
-                    
-                })
-                .addDisposableTo(self.disposeBag)
-              
-            }
-          case .Error(let error):
-            break
-          case .Completed:
-            break
+              })
+              .addDisposableTo(self.disposeBag)
           }
-        }).addDisposableTo(self.disposeBag)
+        }
+        .addDisposableTo(self.disposeBag)
   }
 }
