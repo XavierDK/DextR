@@ -48,6 +48,7 @@
 		2579719A1C3DC8D1006B9DD2 /* BasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 257971981C3DC8D1006B9DD2 /* BasicCell.xib */; };
 		2579719C1C3DC9B3006B9DD2 /* AccountMenuViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579719B1C3DC9B3006B9DD2 /* AccountMenuViewer.swift */; };
 		2579719E1C3DD7E0006B9DD2 /* QCMMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2579719D1C3DD7E0006B9DD2 /* QCMMenuViewModel.swift */; };
+		2586EEB91C7737A300BCA9A1 /* QCMPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2586EEB81C7737A300BCA9A1 /* QCMPlayerCell.xib */; };
 		258ABE071C51A37B000B9D06 /* QuestionPresenterViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258ABE061C51A37B000B9D06 /* QuestionPresenterViewer.swift */; };
 		258ABE091C51A3C6000B9D06 /* QuestionPresenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258ABE081C51A3C6000B9D06 /* QuestionPresenterViewModel.swift */; };
 		25C6E2191C384DD800A6CDFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2181C384DD800A6CDFD /* AppDelegate.swift */; };
@@ -74,6 +75,11 @@
 		25C6E2951C3892D100A6CDFD /* AnswerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2941C3892D100A6CDFD /* AnswerProtocol.swift */; };
 		25C6E2991C3892FD00A6CDFD /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E2981C3892FD00A6CDFD /* Answer.swift */; };
 		25C6E29B1C38930D00A6CDFD /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C6E29A1C38930D00A6CDFD /* Question.swift */; };
+		25E1F54B1C77467100AD703E /* QCMPlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E1F54A1C77467100AD703E /* QCMPlayerCell.swift */; };
+		25E1F54D1C775C9A00AD703E /* QCMAnswerSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E1F54C1C775C9A00AD703E /* QCMAnswerSelectionCell.xib */; };
+		25E1F54F1C775CFE00AD703E /* QCMAnswerSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E1F54E1C775CFE00AD703E /* QCMAnswerSelectionCell.swift */; };
+		25E1F5511C77689900AD703E /* QCMAnswerTrueFalseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E1F5501C77689900AD703E /* QCMAnswerTrueFalseCell.xib */; };
+		25E1F5531C7768B800AD703E /* QCMAnswerTrueFalseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E1F5521C7768B800AD703E /* QCMAnswerTrueFalseCell.swift */; };
 		594223B26C30AC223CB8FE6D /* Pods_DextRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E86966EAB9D3DC31237F5A5 /* Pods_DextRTests.framework */; };
 		5DF3E00FAE8406E15D053FF1 /* Pods_DextR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E4A41742A265CC159DF6A9 /* Pods_DextR.framework */; };
 /* End PBXBuildFile section */
@@ -139,6 +145,7 @@
 		257971981C3DC8D1006B9DD2 /* BasicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicCell.xib; sourceTree = "<group>"; };
 		2579719B1C3DC9B3006B9DD2 /* AccountMenuViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountMenuViewer.swift; path = Modules/Account/Views/AccountMenuViewer.swift; sourceTree = "<group>"; };
 		2579719D1C3DD7E0006B9DD2 /* QCMMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMMenuViewModel.swift; path = "Modules/QCM Admin/ViewModels/QCMMenuViewModel.swift"; sourceTree = "<group>"; };
+		2586EEB81C7737A300BCA9A1 /* QCMPlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QCMPlayerCell.xib; path = "Modules/QCM Player/Views/QCMPlayerCell.xib"; sourceTree = "<group>"; };
 		258ABE061C51A37B000B9D06 /* QuestionPresenterViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionPresenterViewer.swift; path = "Modules/QCM Admin/Views/QuestionPresenterViewer.swift"; sourceTree = "<group>"; };
 		258ABE081C51A3C6000B9D06 /* QuestionPresenterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionPresenterViewModel.swift; path = "Modules/QCM Admin/ViewModels/QuestionPresenterViewModel.swift"; sourceTree = "<group>"; };
 		25C6E2151C384DD800A6CDFD /* DextR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DextR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +178,11 @@
 		25C6E2941C3892D100A6CDFD /* AnswerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnswerProtocol.swift; path = "Modules/QCM Admin/Models/AnswerProtocol.swift"; sourceTree = "<group>"; };
 		25C6E2981C3892FD00A6CDFD /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Answer.swift; path = "Modules/QCM Admin/Models/Answer.swift"; sourceTree = "<group>"; };
 		25C6E29A1C38930D00A6CDFD /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Question.swift; path = "Modules/QCM Admin/Models/Question.swift"; sourceTree = "<group>"; };
+		25E1F54A1C77467100AD703E /* QCMPlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMPlayerCell.swift; path = "Modules/QCM Player/Views/QCMPlayerCell.swift"; sourceTree = "<group>"; };
+		25E1F54C1C775C9A00AD703E /* QCMAnswerSelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QCMAnswerSelectionCell.xib; path = "Modules/QCM Player/Views/QCMAnswerSelectionCell.xib"; sourceTree = "<group>"; };
+		25E1F54E1C775CFE00AD703E /* QCMAnswerSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMAnswerSelectionCell.swift; path = "Modules/QCM Player/Views/QCMAnswerSelectionCell.swift"; sourceTree = "<group>"; };
+		25E1F5501C77689900AD703E /* QCMAnswerTrueFalseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QCMAnswerTrueFalseCell.xib; path = "Modules/QCM Player/Views/QCMAnswerTrueFalseCell.xib"; sourceTree = "<group>"; };
+		25E1F5521C7768B800AD703E /* QCMAnswerTrueFalseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QCMAnswerTrueFalseCell.swift; path = "Modules/QCM Player/Views/QCMAnswerTrueFalseCell.swift"; sourceTree = "<group>"; };
 		5CFA1C0E4800CFE552223E6A /* Pods-DextRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DextRTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DextRTests/Pods-DextRTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7620A6483B8AEDA619390BE5 /* Pods-DextRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DextRTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DextRTests/Pods-DextRTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E86966EAB9D3DC31237F5A5 /* Pods_DextRTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DextRTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,7 +234,13 @@
 			children = (
 				2543BBBB1C52293B00EC1140 /* QCMPlayerViewer.swift */,
 				2543BBBD1C52296300EC1140 /* QCMStarterViewer.swift */,
+				25E1F54A1C77467100AD703E /* QCMPlayerCell.swift */,
+				25E1F54E1C775CFE00AD703E /* QCMAnswerSelectionCell.swift */,
+				25E1F5521C7768B800AD703E /* QCMAnswerTrueFalseCell.swift */,
 				2543BBC31C522DDE00EC1140 /* QCMPlayer.storyboard */,
+				2586EEB81C7737A300BCA9A1 /* QCMPlayerCell.xib */,
+				25E1F54C1C775C9A00AD703E /* QCMAnswerSelectionCell.xib */,
+				25E1F5501C77689900AD703E /* QCMAnswerTrueFalseCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -556,7 +574,6 @@
 				TargetAttributes = {
 					25C6E2141C384DD800A6CDFD = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = F8Z9YT6W9Z;
 					};
 					25C6E22A1C384DD800A6CDFD = {
 						CreatedOnToolsVersion = 7.2;
@@ -595,9 +612,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2586EEB91C7737A300BCA9A1 /* QCMPlayerCell.xib in Resources */,
 				2579719A1C3DC8D1006B9DD2 /* BasicCell.xib in Resources */,
 				25C6E2251C384DD800A6CDFD /* LaunchScreen.storyboard in Resources */,
+				25E1F5511C77689900AD703E /* QCMAnswerTrueFalseCell.xib in Resources */,
 				2543BBC21C522A6100EC1140 /* QCMAdmin.storyboard in Resources */,
+				25E1F54D1C775C9A00AD703E /* QCMAnswerSelectionCell.xib in Resources */,
 				2543BBC01C522A1100EC1140 /* Account.storyboard in Resources */,
 				25C6E2221C384DD800A6CDFD /* Assets.xcassets in Resources */,
 				2543BBC41C522DDE00EC1140 /* QCMPlayer.storyboard in Resources */,
@@ -733,6 +753,7 @@
 				25C6E2911C38929100A6CDFD /* QCMProtocol.swift in Sources */,
 				252BC3D91C4C329D00EECD32 /* QuestionTypeViewer.swift in Sources */,
 				2543BBCA1C5231C900EC1140 /* QCMResultAPIService.swift in Sources */,
+				25E1F54F1C775CFE00AD703E /* QCMAnswerSelectionCell.swift in Sources */,
 				25C6E2891C3886B300A6CDFD /* AccountSignUpViewModel.swift in Sources */,
 				25470F9D1C4E6D30004C2095 /* RequestResult.swift in Sources */,
 				257971891C3DB352006B9DD2 /* QCMPresenterViewer.swift in Sources */,
@@ -757,11 +778,13 @@
 				2543BBD01C523CA400EC1140 /* AnswerResultProtocol.swift in Sources */,
 				25C6E2661C386C4B00A6CDFD /* AccountValidationProtocol.swift in Sources */,
 				255881341C4EE2FE0045FE25 /* QCM.swift in Sources */,
+				25E1F5531C7768B800AD703E /* QCMAnswerTrueFalseCell.swift in Sources */,
 				257971911C3DC830006B9DD2 /* ViewController+SplitAddition.swift in Sources */,
 				25470F9B1C4D5B8A004C2095 /* AppConstant.swift in Sources */,
 				2543BBD61C523F6C00EC1140 /* AnswerResult.swift in Sources */,
 				2579717D1C3DA227006B9DD2 /* QCMCreatorViewModel.swift in Sources */,
 				25C6E26C1C386D3B00A6CDFD /* Wireframe.swift in Sources */,
+				25E1F54B1C77467100AD703E /* QCMPlayerCell.swift in Sources */,
 				25C6E2601C386B9400A6CDFD /* AccountAPIProtocol.swift in Sources */,
 				25C6E2871C38864A00A6CDFD /* AccountSignUpViewer.swift in Sources */,
 				25C6E26A1C386C6E00A6CDFD /* AccountValidationService.swift in Sources */,
@@ -917,9 +940,10 @@
 			baseConfigurationReference = E6416D3D478EA41077AAA3BA /* Pods-DextR.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DextR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = LinkValue.DextR;
+				PRODUCT_BUNDLE_IDENTIFIER = LinkValue.DextRyfy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -930,9 +954,10 @@
 			baseConfigurationReference = 17BB0B13C7C451253EB6A5D5 /* Pods-DextR.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DextR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = LinkValue.DextR;
+				PRODUCT_BUNDLE_IDENTIFIER = LinkValue.DextRyfy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 			};

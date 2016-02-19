@@ -20,8 +20,17 @@ class AppRouter: NSObject {
   let logInIdentifier = "AccountLogInViewer"
   
   func showRootViewsFromVC(vc: UIViewController, animated: Bool) {
-    vc.masterViewController?.popToRootViewControllerAnimated(animated)
-    vc.detailsViewController?.popToRootViewControllerAnimated(animated)
+    
+    if let presented = vc.detailsViewController?.presentedViewController {
+      presented.dismissViewControllerAnimated(false, completion: {
+        vc.masterViewController?.popToRootViewControllerAnimated(animated)
+        vc.detailsViewController?.popToRootViewControllerAnimated(animated)
+      })
+    }
+    else {
+      vc.masterViewController?.popToRootViewControllerAnimated(animated)
+      vc.detailsViewController?.popToRootViewControllerAnimated(animated)      
+    }
   }
   
   func showDetailsRootViewFromVC(vc: UIViewController, animated: Bool) {
@@ -31,7 +40,7 @@ class AppRouter: NSObject {
   func showMasterRootViewFromVC(vc: UIViewController, animated: Bool) {
     vc.masterViewController?.popToRootViewControllerAnimated(animated)
   }
-
+  
   
   func showSignUpFromVC(vc: UIViewController, withCompletion completion: () -> ()) {
     
@@ -127,7 +136,7 @@ class AppRouter: NSObject {
       vc.detailsViewController?.pushViewController(answerCreator, animated: true)
     }
   }
-
+  
   // MARK: QCM Player
   
   let qcmPlayerStoryboardName = "QCMPlayer"
@@ -137,12 +146,24 @@ class AppRouter: NSObject {
   
   func showQCMPlayerFromVC(vc: UIViewController, forQCM qcm: QCMProtocol) {
     
+    vc.detailsViewController?.presentedViewController?.dismissViewControllerAnimated(false, completion: nil)
     vc.detailsViewController?.popToRootViewControllerAnimated(false)
     let qcmPlayer = viewControllerForIdentifier(qcmPlayerIdentifier, storyBoardName: qcmPlayerStoryboardName)
     if let qcmPlayer = qcmPlayer as? QCMPlayerViewer {
       
       qcmPlayer.qcm = qcm
       vc.detailsViewController?.pushViewController(qcmPlayer, animated: false)
+    }
+  }
+  
+  func showQCMStarterFromVC(vc: UIViewController, forViewModel viewModel: QCMPlayerViewModel) {
+    
+    let qcmStarter = viewControllerForIdentifier(qcmStarterIdentifier, storyBoardName: qcmPlayerStoryboardName)
+    if let qcmStarter = qcmStarter as? QCMStarterViewer {
+      
+      qcmStarter.viewModel = viewModel
+      qcmStarter.modalPresentationStyle = .OverCurrentContext
+      vc.presentViewController(qcmStarter, animated: false, completion: nil)
     }
   }
   

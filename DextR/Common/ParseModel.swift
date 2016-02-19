@@ -21,6 +21,10 @@ class ParseModel: Mappable, ParseProtocolModel {
     
   }
   
+  init(){
+    
+  }
+  
   func mapping(map: Map) {
     
     let transform = TransformOf<NSDate, String>(fromJSON: { (value: String?) -> NSDate? in

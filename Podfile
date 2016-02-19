@@ -5,13 +5,14 @@ use_frameworks!
 
 target 'DextR' do
 
-pod 'RxSwift',    '~> 2.0'
-pod 'RxCocoa',    '~> 2.0'
-pod 'RxBlocking', '~> 2.0'
-pod 'RxDataSources', '~> 0.1'
+pod 'RxSwift',    '~> 2.2'
+pod 'RxCocoa',    '~> 2.2'
+pod 'RxBlocking', '~> 2.2'
+pod 'RxDataSources', '~> 0.5'
 pod 'Swinject', '~> 1.0.0'
 pod 'Alamofire', '~> 3.0'
 pod 'ObjectMapper', '~> 1.1'
+pod 'SVProgressHUD'
 
 end
 

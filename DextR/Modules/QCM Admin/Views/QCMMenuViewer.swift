@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import SVProgressHUD
 
 class QCMMenuViewer : UITableViewController {
   
@@ -39,21 +40,29 @@ class QCMMenuViewer : UITableViewController {
     
     self.setupConfig()
     
-    accountAPI?.currentAccount()?.subscribe(onNext: { [weak self] (account) -> Void in
+    if let currentAccountObs = accountAPI?.currentAccount() {
       
-      if  account.modelObject?.admin?.boolValue == true {
+      SVProgressHUD.showWithMaskType(.Gradient)
+      
+      currentAccountObs.subscribe(onNext: { [weak self] (account) -> Void in
         
-        self?.currentAccount = account.modelObject
-        self?.setupAdminConfig()
-      }
-      }, onError: { (error) -> Void in
+        SVProgressHUD.dismiss()
         
-      }, onCompleted: { () -> Void in
-        
-      }, onDisposed: { () -> Void in
-        
-    })
-      .addDisposableTo(disposeBag)
+        if  account.modelObject?.admin?.boolValue == true {
+          
+          self?.currentAccount = account.modelObject
+          self?.setupAdminConfig()
+        }
+        }, onError: { (error) -> Void in
+          
+        }, onCompleted: { () -> Void in
+          
+        }, onDisposed: { () -> Void in
+          
+      })
+        .addDisposableTo(disposeBag)
+      
+    }
     
     self.setupTableView()
   }

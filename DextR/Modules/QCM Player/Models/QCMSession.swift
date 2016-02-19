@@ -20,6 +20,10 @@ class QCMSession: ParseModel, QCMSessionProtocol {
     super.init(map)
   }
   
+  override init() {
+    super.init()
+  }
+  
   override func mapping(map: Map) {
     
     super.mapping(map)

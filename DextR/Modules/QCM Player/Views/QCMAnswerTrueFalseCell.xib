@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AnswerSelectionCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="QCMAnswerTrueFalseCell" rowHeight="80" id="L7S-1P-CYU" customClass="QCMAnswerTrueFalseCell" customModule="DextR" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="425" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L7S-1P-CYU" id="ea0-Mg-wsp">
+                <rect key="frame" x="0.0" y="0.0" width="425" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OL5-cz-RI6">
+                        <rect key="frame" x="311" y="26" width="93" height="29"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="93" id="ISs-0D-eID"/>
+                            <constraint firstAttribute="height" constant="28" id="fdD-KI-Vcd"/>
+                        </constraints>
+                        <segments>
+                            <segment title="True"/>
+                            <segment title="False"/>
+                        </segments>
+                    </segmentedControl>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYF-pt-06v">
+                        <rect key="frame" x="23" y="8" width="274" height="63"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstAttribute="topMargin" secondItem="AYF-pt-06v" secondAttribute="top" id="O4C-5V-QdP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="OL5-cz-RI6" secondAttribute="trailing" constant="13" id="QcR-mB-IUj"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="AYF-pt-06v" secondAttribute="bottom" id="T2i-ej-ARK"/>
+                    <constraint firstItem="OL5-cz-RI6" firstAttribute="leading" secondItem="AYF-pt-06v" secondAttribute="trailing" constant="14" id="cSg-m6-s14"/>
+                    <constraint firstItem="AYF-pt-06v" firstAttribute="leading" secondItem="ea0-Mg-wsp" secondAttribute="leadingMargin" constant="15" id="dgI-lC-HIf"/>
+                    <constraint firstItem="OL5-cz-RI6" firstAttribute="centerY" secondItem="ea0-Mg-wsp" secondAttribute="centerY" id="q5n-R4-Ju7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="answerLabel" destination="AYF-pt-06v" id="GBg-qv-7RM"/>
+                <outlet property="answerSegment" destination="OL5-cz-RI6" id="oVr-Mx-tVj"/>
+            </connections>
+            <point key="canvasLocation" x="573.5" y="198"/>
+        </tableViewCell>
+    </objects>
+</document>

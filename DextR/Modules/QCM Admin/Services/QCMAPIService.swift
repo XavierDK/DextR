@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Parse
 import RxSwift
 import Alamofire
 import ObjectMapper

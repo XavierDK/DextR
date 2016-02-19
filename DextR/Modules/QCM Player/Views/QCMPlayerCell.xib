@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="QCMPlayerCell" id="1HR-qx-0GC" customClass="QCMPlayerCell" customModule="DextR" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="524" height="507"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="524" height="507"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBR-fZ-YmV">
+                        <rect key="frame" x="29" y="25" width="471" height="107"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="107" id="Hi8-1Y-Bd9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AcV-EN-aqI">
+                        <rect key="frame" x="24" y="143" width="476" height="356"/>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="1HR-qx-0GC" id="bJR-BH-NEM"/>
+                        </connections>
+                    </tableView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="GBR-fZ-YmV" firstAttribute="leading" secondItem="1HR-qx-0GC" secondAttribute="leading" constant="29" id="BTD-ht-kGV"/>
+                <constraint firstItem="AcV-EN-aqI" firstAttribute="leading" secondItem="1HR-qx-0GC" secondAttribute="leading" constant="24" id="LKd-dL-OAQ"/>
+                <constraint firstItem="AcV-EN-aqI" firstAttribute="top" secondItem="GBR-fZ-YmV" secondAttribute="bottom" constant="11" id="MkP-3q-WRr"/>
+                <constraint firstAttribute="bottom" secondItem="AcV-EN-aqI" secondAttribute="bottom" constant="8" id="QgS-mT-09M"/>
+                <constraint firstItem="GBR-fZ-YmV" firstAttribute="top" secondItem="1HR-qx-0GC" secondAttribute="top" constant="25" id="SaS-2u-On1"/>
+                <constraint firstAttribute="trailing" secondItem="GBR-fZ-YmV" secondAttribute="trailing" constant="24" id="hTT-bO-tyi"/>
+                <constraint firstAttribute="trailing" secondItem="AcV-EN-aqI" secondAttribute="trailing" constant="24" id="hTk-Ta-0M0"/>
+            </constraints>
+            <size key="customSize" width="524" height="507"/>
+            <connections>
+                <outlet property="answersTableView" destination="AcV-EN-aqI" id="Daf-ir-gzX"/>
+                <outlet property="titleLabel" destination="GBR-fZ-YmV" id="WSh-Nv-VaM"/>
+            </connections>
+            <point key="canvasLocation" x="300" y="645.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

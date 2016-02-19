@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import SVProgressHUD
 
 class AccountMenuViewer : UITableViewController {
   
@@ -34,21 +35,29 @@ class AccountMenuViewer : UITableViewController {
   
   func checkConnected() {
     
-    accountAPI?.currentAccount()?.subscribe(onNext: { [weak self] (account) -> Void in
+    if let currentAccountObs = accountAPI?.currentAccount() {
       
-      if let _self = self {
-        if account.isSuccess == true {
-          _self.router?.showQCMMenuFromVC(_self)
+      SVProgressHUD.showWithMaskType(.Gradient)
+      
+      currentAccountObs.subscribe(onNext: { [weak self] (account) -> Void in
+        
+        SVProgressHUD.dismiss()
+        if let _self = self {
+          if account.isSuccess == true {
+            _self.router?.showQCMMenuFromVC(_self)
+          }
         }
-      }
-      }, onError: { (error) -> Void in
-        
-      }, onCompleted: { () -> Void in
-        
-      }, onDisposed: { () -> Void in
-        
-    })
-      .addDisposableTo(disposeBag)
+        }, onError: { (error) -> Void in
+          
+          SVProgressHUD.dismiss()
+          
+        }, onCompleted: { () -> Void in
+
+        }, onDisposed: { () -> Void in
+          
+      })
+        .addDisposableTo(disposeBag)
+    }
     
   }
   
