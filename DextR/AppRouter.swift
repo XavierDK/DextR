@@ -143,6 +143,7 @@ class AppRouter: NSObject {
   
   let qcmPlayerIdentifier = "QCMPlayerViewer"
   let qcmStarterIdentifier = "QCMStarterViewer"
+  let qcmThanksIdentifier = "QCMThanksViewer"
   
   func showQCMPlayerFromVC(vc: UIViewController, forQCM qcm: QCMProtocol) {
     
@@ -166,6 +167,15 @@ class AppRouter: NSObject {
       vc.presentViewController(qcmStarter, animated: false, completion: nil)
     }
   }
+  
+  func showQCMThanksFromVC(vc: UIViewController) {
+    
+    let qcmThanks = viewControllerForIdentifier(qcmThanksIdentifier, storyBoardName: qcmPlayerStoryboardName)
+    if let qcmThanks = qcmThanks {
+      vc.detailsViewController?.pushViewController(qcmThanks, animated: false)
+    }
+  }
+
   
   // MARK: Default
   

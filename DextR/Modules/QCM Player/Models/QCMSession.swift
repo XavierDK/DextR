@@ -28,7 +28,7 @@ class QCMSession: ParseModel, QCMSessionProtocol {
     
     super.mapping(map)
 
-    player      <- map["player"]
+    player      <- map["player"]    
     qcm         <- map["qcm"]
     totalTime   <- map["totalTime"]
   }

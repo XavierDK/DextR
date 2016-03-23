@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import ObjectMapper
 
-protocol ParseProtocolModel {
+protocol ParseProtocolModel: Mappable {
   
   var objectId: String? {get set}
   var createdAt: NSDate? {get set}

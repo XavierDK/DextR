@@ -19,6 +19,7 @@ class AccountAPIService : AccountAPIProtocol {
   private let logoutUrl = "https://api.parse.com/1/logout"
   
   private let currentSessionTokenKey = "__Current_Session_Token__"
+  private let currentUserObjectId = "__Current_User_Object_ID__"
   
   func logIn(email: String, password: String) -> Observable<RequestResult<AccountProtocol>> {
     
@@ -126,6 +127,12 @@ class AccountAPIService : AccountAPIProtocol {
     NSUserDefaults.standardUserDefaults().synchronize()
   }
   
+  func saveUserObjectId(objectId: String) {
+    
+    NSUserDefaults.standardUserDefaults().setObject(objectId, forKey: self.currentUserObjectId)
+    NSUserDefaults.standardUserDefaults().synchronize()
+  }
+  
   func resetCurrentSessionToken() {
     NSUserDefaults.standardUserDefaults().removeObjectForKey(self.currentSessionTokenKey)
     NSUserDefaults.standardUserDefaults().synchronize()
@@ -162,6 +169,9 @@ class AccountAPIService : AccountAPIProtocol {
                   
                   if let sessionToken = account?.sessionToken {
                     self.saveCurrentSessionToken(sessionToken)
+                  }
+                  if let userId = account?.objectId {
+                    self.saveUserObjectId(userId)
                   }
                   
                   observer.on(.Next(RequestResult<AccountProtocol>(isSuccess: true, code: nil, message: nil, modelObject: account)))

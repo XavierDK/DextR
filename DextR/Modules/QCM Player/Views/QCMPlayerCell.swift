@@ -10,9 +10,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-public class QCMPlayerCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
+public class QCMPlayerCell: UICollectionViewCell, UITableViewDataSource {
   
-  var disposeBag: DisposeBag!
+  var disposeBag: DisposeBag = DisposeBag()
   
   @IBOutlet var titleLabel: UILabel!
   @IBOutlet var answersTableView: UITableView!
@@ -22,6 +22,8 @@ public class QCMPlayerCell: UICollectionViewCell, UITableViewDataSource, UITable
   
   var questionType: QuestionType?
   
+  var questionAnswers: QuestionAnswersProtocol?
+  
   var answers: [AnswerProtocol]? {
     didSet {
       answersTableView.reloadData()
@@ -30,16 +32,15 @@ public class QCMPlayerCell: UICollectionViewCell, UITableViewDataSource, UITable
   
   public required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+    
   }
   
   override public func prepareForReuse() {
     super.prepareForReuse()
     
-    disposeBag = nil
+    disposeBag = DisposeBag()
   }
   
-  deinit {
-  }
   
   // MARK: TableViewDataSource
   
@@ -55,23 +56,53 @@ public class QCMPlayerCell: UICollectionViewCell, UITableViewDataSource, UITable
     if let answer = answers?[indexPath.row] {
       
       var cell = UITableViewCell()
-     
+      
       if questionType == .Selection {
+        
         cell = answersTableView?.dequeueReusableCellWithIdentifier(answerSelectionCell) ?? UITableViewCell()
         
         if let cell = cell as? QCMAnswerSelectionCell {
           cell.answerLabel.text = answer.title
+          
+          if let answersResult = self.questionAnswers?.answersResult {
+            var answ = answersResult[indexPath.row]
+            
+            cell.answerSwitch.selected = answ.selected ?? false
+            
+            cell.answerSwitch.rx_value
+              .subscribeNext({ (value) in
+                if answ.answer?.objectId == answer.objectId {
+                  answ.selected = value
+                }
+              })
+              .addDisposableTo(disposeBag)
+          }
         }
       }
       else if questionType == .TrueFalse {
-
+        
         cell = answersTableView?.dequeueReusableCellWithIdentifier(answerTrueFalseCell) ?? UITableViewCell()
         
         if let cell = cell as? QCMAnswerTrueFalseCell {
           cell.answerLabel.text = answer.title
+          
+          if let answersResult = self.questionAnswers?.answersResult {
+            var answ = answersResult[indexPath.row]
+            
+            cell.answerSegment.selectedSegmentIndex = (answ.selected == true) ? (0) : (1)
+            
+            cell.answerSegment.rx_value
+              .subscribeNext({ (value) in
+                
+                if answ.answer?.objectId == answer.objectId {
+                  answ.selected = (value == 0) ? (true) : (false)
+                }
+              })
+              .addDisposableTo(disposeBag)
+          }
         }
       }
-
+      
       return cell
     }
     
